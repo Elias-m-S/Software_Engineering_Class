@@ -1,58 +1,46 @@
-# Software_Engineering_Class
-Ziel:
-PDF mit allen Sachen alle Diagramme
-PDF leserlich
+# Software Engineering – Program Design (DHBW)
 
-75% Document Architecture
-25% Detailed Design
+**Gruppe:** Die Drei Muskeltiere
 
-Programmiersprache auswährlen, warum abwägen usw. Wahl für sprache
+Dieses Repository enthält unsere Ausarbeitung zum *Program Design* im Modul **Software Engineering** (DHBW Ravensburg, Campus Friedrichshafen). Ziel ist ein **System Design Document (PDF)**, das die **Software-Architektur** des Truck-Systems dokumentiert, sowie ein **detailliertes UML-Design** für das Teil-System **Emergency Stop**.
 
-Deployment Program
+## Scope (Kurzüberblick)
 
-Sequence Diagramme
-(auf punkteverteilung achten um zu verstehen den Umfang)
+- Fokus auf der **Software im Truck** (die PC-Anwendung ist explizit out of scope).
+- Schwerpunkt in der Modellierung: **Emergency Stop** nahe an der Motor-/Drive-Control.
+- Vereinfachte Annahmen aus der Vorlesung/Übung:
+  - Kein ROS/WLAN-Fokus; Sensor-Fusion ist als Blackbox betrachtet.
+  - LiDAR liefert direkt die relevanten Distanzinformationen zum nächstliegenden Objekt.
 
-Fokus aufemergency stop
+## Inhalte / Erwartete Ergebnisse
 
-Klassendiagramme zum detailed design
+Im System Design Document werden u.a. folgende Aspekte abgedeckt:
 
-Vereinfachen das System ohne ROS, Kamera fusioniert mit LiDAR liefert daten.
-Lidar daten filtern müssen wir nicht machen. wir bkeommen dirket daten zum nächstliegenden Objekt
+- **Architektur-Übersicht** (z.B. Context Diagram + Subsystem-Zerlegung)
+- **Subsystem-Verantwortlichkeiten** (Class Diagrams mit Attributen und Public Operations)
+- **Hardware/Software-Mapping** (Deployment Diagram)
+- **Global Software Control** (Sequence Diagrams; Interaktion mit Emergency Stop)
+- **Boundary Conditions** (Sequence Diagrams für Start-up, Shutdown, Error Scenario)
+- **Detailed Design** für die zentrale Emergency-Stop-Klasse
+  - Private Methoden
+  - Sequenzdiagramm (externe Interfaces + interne Calls)
+  - State-Machine- oder Activity-Diagramme pro Methode (mit Notes/Comments)
 
-Arduino slave
-CAN Pakete kommen rein, gibt werte raus
+Inhaltlich unterscheiden wir grob zwischen:
 
-emergency stop nah an Motorsteuerung
+- **Normal Operation** (Gelb/Grün): TTC-Observer überwacht und erlaubt Auto-Recovery.
+- **Safety-Zone / Emergency Stop** (Rot): Emergency Stop übernimmt und blockiert, bis eine Freigabe über Button erfolgt.
 
-WLAN USW. ignorieren. Fikus nur auf ES.
+Optional (wenn sinnvoll im Modell): **Error Logging** inkl. Zeitstempel/Level (Error/Warning/Info), z.B. auch als Event bei ES-Auslösung oder fehlenden Sensordaten.
 
-Component Overview beacahten 
+## Repository-Struktur
 
-es sollte eindeutig sein, worauf ES läuft, verraten wollte er es aber nicht
-(Erste Vermutung: Arduino Slave)
+- [Mitschrieb.md](Mitschrieb.md) – Vorlesungsnotizen/Projektentscheidungen (Scope, ES-Fokus, Annahmen)
+- [2026-02_Aufgabenbeschreibung Program Design.pdf](2026-02_Aufgabenbeschreibung%20Program%20Design.pdf) – Aufgabenblatt / Deliverables / Bewertung
+- [Chapter_ProgramDesign.pptx](Chapter_ProgramDesign.pptx) – Folien zur Struktur und zu erwarteten Diagrammen
+- [TeX_Documentation/](TeX_Documentation/) – Platz für LaTeX-Quellen der finalen PDF (falls genutzt)
 
-Notbremse bei ROT
-TTC bei Gelb und Grün == automatisiiert weiterfahren
+## Hinweise
 
-ES nur bei ROT und Pilzknopf und Taster vorne...
-
-TTC gehört nicht zu ES sondern zu Normal Operation
-
-"Normal Operation" ist gelb und grün
-
-sobald einObjekt in rot == ES übernimmt und alles blockiert bis Taster wieder freigibt
-
-gerne gesehen: funktionalität zum error loggen
-Klasse die Informationen bereitstellt und weitergibt
-== nicht pflicht 
-selber assuchen, geht nur um möglichekeot, ansdere systeme sind blackbox
-also nur error_logging
-z.b verschiedene level: error, warning, info mit zeitstempel
-Error Logging auch= ES auslösung 
-
-keine sensordaten= stopp + logging
-
-
-Klasse fpr CAN DAten, da OOP
-
+- Das **Enterprise-Architect-Projekt** dient als Supplement; bewertet wird der Inhalt im **System Design Document (PDF)**.
+- Die Dokumentation enthält außerdem eine kurze **Begründung der Architektur- und Sprachwahl (C vs. C++)** inkl. Alternativen.
