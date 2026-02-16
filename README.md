@@ -33,12 +33,6 @@ Inhaltlich unterscheiden wir grob zwischen:
 
 Optional (wenn sinnvoll im Modell): **Error Logging** inkl. Zeitstempel/Level (Error/Warning/Info), z.B. auch als Event bei ES-Auslösung oder fehlenden Sensordaten.
 
-## Repository-Struktur
-
-- [Mitschrieb.md](Mitschrieb.md) – Vorlesungsnotizen/Projektentscheidungen (Scope, ES-Fokus, Annahmen)
-- [2026-02_Aufgabenbeschreibung Program Design.pdf](2026-02_Aufgabenbeschreibung%20Program%20Design.pdf) – Aufgabenblatt / Deliverables / Bewertung
-- [Chapter_ProgramDesign.pptx](Chapter_ProgramDesign.pptx) – Folien zur Struktur und zu erwarteten Diagrammen
-- [TeX_Documentation/](TeX_Documentation/) – Platz für LaTeX-Quellen der finalen PDF (falls genutzt)
 
 ## Hinweise
 
