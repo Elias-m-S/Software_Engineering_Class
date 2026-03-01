@@ -1,0 +1,135 @@
+% =============================================================
+%  Kapitel 2 – Gesamtarchitektur
+% =============================================================
+\section{Gesamtarchitektur des Systems}
+\label{sec:gesamtarchitektur}
+
+\subsection{Systemkontext}
+\label{sec:systemkontext}
+
+Das Fahrzeug besteht aus drei physisch getrennten Recheneinheiten,
+die über definierte Kommunikationskanäle miteinander verbunden sind:
+
+\begin{itemize}
+  \item \textbf{Jetson Nano} – Hochleistungs-Recheneinheit für Wahrnehmung und autonome Logik.
+  \item \textbf{Arduino Mega Master} – Kommunikations-Gateway zwischen Jetson und Slave.
+  \item \textbf{Arduino Mega Slave} – Sicherheitskritische Einheit nahe der Motorsteuerung;
+        hier läuft der Emergency Stop.
+\end{itemize}
+
+Die Kommunikation erfolgt über:
+\begin{itemize}
+  \item \textbf{LAN} (Jetson Nano $\leftrightarrow$ Arduino Mega Master)
+  \item \textbf{CAN-Bus} (Arduino Mega Master $\leftrightarrow$ Arduino Mega Slave)
+\end{itemize}
+
+Die Platzierung des Emergency Stop auf dem Slave minimiert Kommunikationsverzögerungen
+zur Motorsteuerung (\emph{DriveControlUnit}) und stellt eine deterministische
+Reaktionszeit sicher.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{01_Context}
+  \caption{Kontextdiagramm – Systemgrenzen und externe Akteure}
+  \label{fig:context}
+\end{figure}
+
+\subsection{Logische Systemstruktur (Component Overview)}
+\label{sec:component_overview}
+
+Die logische Architektur zeigt die funktionale Zerlegung des Systems in Subsysteme.
+Abbildung~\ref{fig:component_overview} gibt einen Überblick.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{02_Component_Overview}
+  \caption{Komponentenübersicht – logische Systemstruktur}
+  \label{fig:component_overview}
+\end{figure}
+
+Wesentliche Eigenschaften der Architektur:
+\begin{itemize}
+  \item Der \textbf{TTC-Observer} verarbeitet Sensordaten zur Bestimmung der Fahrzone
+        (Grün/Gelb) und gehört ausschließlich zur \emph{Normal Operation}.
+  \item Der \textbf{Emergency Stop} verarbeitet ausschließlich CAN-basierte Kommandos
+        und ist von der Autonomie-Logik entkoppelt.
+  \item Sensorik wird über das \texttt{EnvironmentControl}-Interface in CAN-Nachrichten
+        übersetzt (Sensor-Fusion als Blackbox).
+  \item Das \textbf{Logging}-Modul ist als separates Querschnittsmodul modelliert;
+        es wird von Emergency Stop bei jeder Zustandsänderung aufgerufen.
+  \item Eine direkte Abhängigkeit zwischen TTC-Observer und Emergency Stop
+        \textbf{existiert nicht} – dies sichert die Unabhängigkeit der Sicherheitsfunktion.
+\end{itemize}
+
+\subsection{Subsystem-Verantwortlichkeiten und Klassendiagramme}
+\label{sec:klassendiagramme}
+
+Die folgenden Klassendiagramme zeigen Attribute und öffentliche Operationen
+pro Hardware-Subsystem.
+
+\subsubsection{Jetson Nano – Klassen}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{02_Jetson_ClassDiagram}
+  \caption{Klassendiagramm Jetson Nano: Autonomie-/Wahrnehmungs-Subsystem}
+  \label{fig:jetson_classes}
+\end{figure}
+
+Hauptverantwortlichkeiten des Jetson-Subsystems:
+\begin{description}
+  \item[\texttt{AutonomyController}]
+    Koordiniert autonomes Fahrverhalten; empfängt Zonenstatus vom TTC-Observer.
+  \item[\texttt{TTCObserver}]
+    Berechnet Time-To-Collision aus Sensordaten; sendet ZoneUpdate-Kommandos
+    (Normal/Warnung). Zuständig für Gelb- und Grün-Zonen.
+  \item[\texttt{SensorFusionAdapter}]
+    Abstrahiert die Sensor-Fusion (Kamera + LiDAR); liefert normierte
+    Distanz-/Objektdaten. Intern als Blackbox behandelt.
+\end{description}
+
+\subsubsection{Arduino Mega Master – Klassen}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{02_Master_ClassDiagram}
+  \caption{Klassendiagramm Arduino Mega Master: Kommunikations-Gateway}
+  \label{fig:master_classes}
+\end{figure}
+
+Hauptverantwortlichkeiten des Master-Subsystems:
+\begin{description}
+  \item[\texttt{MasterLanLink}]
+    Empfängt Befehle vom Jetson über LAN und leitet sie auf den CAN-Bus weiter.
+  \item[\texttt{MasterCanGateway}]
+    Kapselt CAN-Kommunikation; wandelt LAN-Nachrichten in CAN-Pakete um.
+    \assumption{CAN-Datenklasse als eigene Klasse modelliert (OOP-Anforderung).}
+  \item[\texttt{HmiService}]
+    Verarbeitet Signale des Pilzknopfs (Emergency-Button) und des Fronttasters;
+    erzeugt entsprechende CAN-Ereignisse.
+\end{description}
+
+\subsubsection{Arduino Mega Slave – Klassen}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{02_Slave_ClassDiagram}
+  \caption{Klassendiagramm Arduino Mega Slave: Sicherheits- und Antriebssubsystem}
+  \label{fig:slave_classes}
+\end{figure}
+
+Hauptverantwortlichkeiten des Slave-Subsystems:
+\begin{description}
+  \item[\texttt{EnvironmentControl}]
+    Schnittstelle zur Empfangsseite des CAN-Busses; übersetzt eingehende Pakete
+    in interne Ereignisse für den Emergency Stop.
+  \item[\texttt{EmergencyStop}]
+    Zentrale Sicherheitsklasse (Detailed Design in Abschnitt~\ref{sec:detaileddesign}).
+    Steuert den Zustandsautomaten und die DriveControlUnit.
+  \item[\texttt{DriveControlUnit}]
+    Abstrahiert die Motorsteuerung; empfängt ausschließlich Stop-/Freigabe-Befehle
+    vom Emergency Stop.
+  \item[\texttt{Logger}]
+    Querschnittsmodul für Error-Logging; unterstützt Level (\texttt{ERROR},
+    \texttt{WARNING}, \texttt{INFO}) mit Zeitstempel.
+\end{description}

@@ -1,0 +1,74 @@
+% =============================================================
+%  Kapitel 8 – Nächste Schritte / Offene Punkte
+% =============================================================
+\section{Nächste Schritte und offene Punkte}
+\label{sec:naechste_schritte}
+
+Die folgende Liste fasst die wichtigsten offenen Punkte zusammen,
+priorisiert nach Relevanz für die Bewertung.
+
+\subsection{Priorisierte To-do-Liste}
+
+\begin{enumerate}
+  \item \textbf{[P1 – Detailed Design]}
+    \textbf{Activity-Diagramme für private Methoden ausarbeiten.} \\
+    Mindestens für \texttt{checkReleaseGuard()} und
+    \texttt{triggerEmergencyStop()} ein Activity-Diagramm erstellen
+    \emph{oder} schriftlich begründen, warum der Zustandsautomat
+    (Abschnitt~\ref{sec:estop_statemachine}) als alleinige
+    dynamische Modellierung ausreicht.
+    \todo{Activity-Diagramme erstellen oder Begründung formulieren.}
+
+  \item \textbf{[P1 – Detailed Design]}
+    \textbf{Vollständige Methodenliste mit Vor-/Nachbedingungen.} \\
+    Alle privaten Methoden der Klasse \texttt{EmergencyStop} mit
+    Preconditions, Postconditions und ggf.\ Invarianten spezifizieren
+    (Design by Contract).
+    \todo{Tabelle mit Pre-/Postconditions für alle privaten Methoden vervollständigen.}
+
+  \item \textbf{[P2 – Architektur]}
+    \textbf{Kurze schriftliche Begründung der Sprachauswahl (C++) finalisieren.} \\
+    Der Abschnitt~\ref{sec:sprachauswahl} enthält bereits die wesentlichen
+    Argumente. Mit dem Team abstimmen und auf 3--5 Sätze verdichten.
+    \todo{Sprachauswahl-Begründung mit Team abstimmen und finalisieren.}
+
+  \item \textbf{[P2 – Architektur]}
+    \textbf{CAN-Datenklasse ausdetaillieren.} \\
+    Die Klasse für CAN-Pakete (Struktur: ID, Payload, Timestamp) in einem
+    eigenen Klassendiagramm modellieren und in Abschnitt~\ref{sec:klassendiagramme}
+    einbinden.
+    \todo{CAN-Datenklasse modellieren und Diagramm einbinden.}
+
+  \item \textbf{[P3 – Qualität]}
+    \textbf{Latenzzahlen ergänzen.} \\
+    Typische CAN-Zykluszeit und LAN-Latenz aus Systemtests eintragen
+    (Abschnitt~\ref{sec:deployment}).
+    \todo{Messwerte aus Systemtest nachtragen.}
+
+  \item \textbf{[P3 – Optional]}
+    \textbf{Logger-Interface vollständig spezifizieren.} \\
+    Vollständige Methodenliste für \texttt{Logger} (inkl.\ Log-Level-Enum,
+    Puffer-Strategie, Ausgabe-Kanal).
+    \todo{Logger-Interface ausarbeiten (optional, aber gern gesehen laut Aufgabenstellung).}
+
+  \item \textbf{[P3 – Optional]}
+    \textbf{Interfaces (\texttt{EnvironmentControl}) vollständig ausarbeiten.} \\
+    Nicht nur eine einzelne Funktion, sondern alle Methoden und Signale
+    des Interfaces spezifizieren.
+    \todo{EnvironmentControl-Interface vollständig modellieren.}
+\end{enumerate}
+
+\subsection{Bekannte Annahmen (zur Überprüfung)}
+
+Die folgenden Annahmen wurden getroffen und müssen mit dem Team
+bzw.\ der Aufgabenstellung validiert werden:
+
+\begin{itemize}
+  \item \assumption{Emergency Stop läuft auf dem Arduino Mega Slave
+        (nahe DriveControlUnit). Erste Vermutung laut Mitschrieb; zu bestätigen.}
+  \item \assumption{CAN-Zykluszeit $< 5\,\text{ms}$; zu messen.}
+  \item \assumption{Distanzschwelle für Rot-Zone: $\leq 15\,\mathrm{cm}$.}
+  \item \assumption{CAN-Datenklasse kapselt ID, Payload und Timestamp.}
+  \item \assumption{Logger schreibt auf seriellen Ausgang des Slave-Arduinos;
+        kein persistenter Speicher.}
+\end{itemize}

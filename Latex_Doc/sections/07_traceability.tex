@@ -1,0 +1,82 @@
+% =============================================================
+%  Kapitel 7 – Traceability: Anforderung → Artefakt
+% =============================================================
+\section{Traceability: Anforderung \texorpdfstring{$\to$}{->} Artefakt}
+\label{sec:traceability}
+
+Die folgende Tabelle ordnet jede Pflichtanforderung der Aufgabenstellung
+einem konkreten Artefakt in diesem Dokument zu.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{longtable}{p{6.5cm} p{4.5cm} p{2.5cm}}
+  \toprule
+  \textbf{Anforderung (Aufgabenstellung)} &
+  \textbf{Artefakt / Diagramm} &
+  \textbf{Abschnitt} \\
+  \midrule
+  \endhead
+  % --- Architektur ---
+  Architektur-Übersicht (Context Diagram)
+    & Abb.~\ref{fig:context} \newline 01\_Context.png
+    & \S\,\ref{sec:systemkontext} \\
+  Subsystem-Zerlegung + Verantwortlichkeiten
+    & Abb.~\ref{fig:component_overview} \newline 02\_Component\_Overview.png
+    & \S\,\ref{sec:component_overview} \\
+  Class Diagrams (Jetson)
+    & Abb.~\ref{fig:jetson_classes} \newline 02\_Jetson\_ClassDiagram.png
+    & \S\,\ref{sec:klassendiagramme} \\
+  Class Diagrams (Master)
+    & Abb.~\ref{fig:master_classes} \newline 02\_Master\_ClassDiagram.png
+    & \S\,\ref{sec:klassendiagramme} \\
+  Class Diagrams (Slave)
+    & Abb.~\ref{fig:slave_classes} \newline 02\_Slave\_ClassDiagram.png
+    & \S\,\ref{sec:klassendiagramme} \\
+  % --- Deployment ---
+  Hardware/Software-Mapping (Deployment)
+    & Abb.~\ref{fig:deployment} \newline 03\_Deployment.png
+    & \S\,\ref{sec:deployment} \\
+  % --- Global Software Control ---
+  Global Software Control (Sequenz Safety-Zone)
+    & Abb.~\ref{fig:seq_safetyzone} \newline 04\_Sequence\_SafetyZone.png
+    & \S\,\ref{sec:seq_safetyzone} \\
+  % --- Boundary Conditions ---
+  Boundary Condition: Startup
+    & Abb.~\ref{fig:seq_startup} \newline 05\_Sequence\_Startup.png
+    & \S\,\ref{sec:seq_startup} \\
+  Boundary Condition: Shutdown
+    & Abb.~\ref{fig:seq_shutdown} \newline 05\_Sequence\_Shutdown.png
+    & \S\,\ref{sec:seq_shutdown} \\
+  Boundary Condition: Error
+    & Abb.~\ref{fig:seq_error} \newline 05\_Sequence\_Error.png
+    & \S\,\ref{sec:seq_error} \\
+  Boundary Condition: Release
+    & Abb.~\ref{fig:seq_release} \newline 05\_Sequence\_Release.png
+    & \S\,\ref{sec:seq_release} \\
+  Boundary Condition: Release Rejected
+    & Abb.~\ref{fig:seq_releaserejected} \newline 05\_Sequence\_ReleaseRejected.png
+    & \S\,\ref{sec:seq_releaserejected} \\
+  % --- Detailed Design ---
+  Detailed Design ES: Klasse + private Methoden
+    & Abb.~\ref{fig:estop_class} \newline 06\_EStop\_Class\_Detailed.png + Tabellen
+    & \S\,\ref{sec:estop_klassen} \\
+  Detailed Design ES: Internes Sequenzdiagramm
+    & Abb.~\ref{fig:estop_seq} \newline 06\_EStop\_Internal\_Sequence.png
+    & \S\,\ref{sec:estop_seq} \\
+  Detailed Design ES: State Machine
+    & Abb.~\ref{fig:estop_statemachine} \newline 06\_EStop\_StateMachine.png
+    & \S\,\ref{sec:estop_statemachine} \\
+  % --- Entscheidungen ---
+  Sprachauswahl (C vs.\ C++) + Rationale
+    & Text + Tabelle
+    & \S\,\ref{sec:sprachauswahl} \\
+  Architektur-Alternativen + Rationale
+    & Text
+    & \S\,\ref{sec:entsch_verteilung} \\
+  % --- Offene Punkte ---
+  Activity-Diagramme pro private Methode
+    & \todo{Ausstehend}
+    & \S\,\ref{sec:naechste_schritte} \\
+  \bottomrule
+\end{longtable}
+\end{center}

@@ -1,0 +1,72 @@
+% =============================================================
+%  Kapitel 1 – Einleitung
+% =============================================================
+\section{Einleitung}
+\label{sec:einleitung}
+
+Dieses Dokument beschreibt das \textbf{Program Design} des verteilten Not-Halt-Systems
+einer autonomen Fahrzeugplattform (Truck).
+Es hat den Charakter eines \emph{System Design Documents} (SDD) und dokumentiert
+die Softwarearchitektur sowie das detaillierte Design des Teilsystems \textbf{Emergency Stop}.
+
+\subsection{Scope}
+\label{sec:scope}
+
+\begin{itemize}
+  \item \textbf{In Scope:} Software im Truck (Jetson Nano, Arduino Mega Master,
+        Arduino Mega Slave), Architektur, Kommunikationsschnittstellen,
+        Emergency-Stop-Logik, Boundary Conditions.
+  \item \textbf{Out of Scope:} PC-Anwendung, ROS-Integration, WLAN-Kommunikation,
+        Details der Sensor-Fusion (wird als Blackbox behandelt).
+  \item \textbf{Vereinfachungen:}
+        LiDAR liefert direkt die Distanz zum nächstliegenden Objekt;
+        Sensor-Fusion ist vorgelagert und für dieses Dokument transparent.
+\end{itemize}
+
+\subsection{Ziel des Dokuments}
+\label{sec:ziel}
+
+Das SDD richtet sich an Entwicklerinnen und Entwickler, die
+\begin{enumerate}
+  \item die Gesamtarchitektur und die Subsystem-Verantwortlichkeiten verstehen,
+  \item das Deployment auf den Hardwareeinheiten nachvollziehen,
+  \item das dynamische Verhalten (Sequenzen, Boundary Conditions) analysieren und
+  \item das Emergency-Stop-Modul detailliert implementieren wollen.
+\end{enumerate}
+
+\subsection{Abgrenzung Normal Operation vs.\ Emergency Stop}
+\label{sec:abgrenzung}
+
+Das System unterscheidet zwei Betriebsmodi:
+
+\begin{description}
+  \item[Normal Operation (Gelb/Grün)]
+    Der \emph{TTC-Observer} (Time-To-Collision) überwacht die Umgebung und erlaubt
+    eine automatische Reaktion auf Hindernisse.  Der Fahrvorgang wird angepasst,
+    das Fahrzeug kann aber weiterfahren.  TTC ist \textbf{kein} Bestandteil des
+    Emergency-Stop-Moduls.
+  \item[Safety Zone / Emergency Stop (Rot)]
+    Sobald ein Objekt die rote Sicherheitszone unterschreitet, ein Pilzknopf gedrückt
+    oder ein Fronttaster ausgelöst wird, übernimmt der \emph{Emergency Stop}.
+    Das Fahrzeug bleibt stehen, bis eine \textbf{manuelle Freigabe} erfolgt
+    (Guard-Bedingung: Safety-Zone nicht mehr aktiv, kein Fehler).
+\end{description}
+
+\subsection{Dokument-Übersicht}
+\label{sec:uebersicht}
+
+\begin{center}
+\begin{tabular}{ll}
+  \toprule
+  \textbf{Abschnitt} & \textbf{Inhalt} \\
+  \midrule
+  \S\,\ref{sec:gesamtarchitektur} & Systemkontext, Subsystem-Zerlegung, Klassendiagramme \\
+  \S\,\ref{sec:deployment}        & Hardware/Software-Mapping (Deployment) \\
+  \S\,\ref{sec:dynamik}           & Global Software Control + Boundary Conditions (Sequenzen) \\
+  \S\,\ref{sec:detaileddesign}    & Detailed Design Emergency Stop \\
+  \S\,\ref{sec:entscheidungen}    & Architektonische Entscheidungen (inkl.\ Sprachauswahl) \\
+  \S\,\ref{sec:traceability}      & Traceability: Anforderung $\to$ Artefakt \\
+  \S\,\ref{sec:naechste_schritte} & Nächste Schritte / offene Punkte \\
+  \bottomrule
+\end{tabular}
+\end{center}

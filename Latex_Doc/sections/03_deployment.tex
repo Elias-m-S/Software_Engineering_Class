@@ -1,0 +1,63 @@
+% =============================================================
+%  Kapitel 3 – Verteilungsarchitektur (Deployment)
+% =============================================================
+\section{Verteilungsarchitektur (Deployment)}
+\label{sec:deployment}
+
+Das Deployment-Diagramm (Abbildung~\ref{fig:deployment}) ordnet Softwarekomponenten
+den physischen Hardwareeinheiten zu und macht die Kommunikationskanäle sichtbar.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{03_Deployment}
+  \caption{Deployment-Diagramm – Hardware/Software-Mapping}
+  \label{fig:deployment}
+\end{figure}
+
+\subsection{Komponentenverteilung}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{>{\bfseries}p{4cm} p{9cm}}
+  \toprule
+  Hardware-Knoten & Softwarekomponenten \\
+  \midrule
+  Jetson Nano
+    & \texttt{AutonomyController}, \texttt{TTCObserver},
+      \texttt{SensorFusionAdapter} \\
+  Arduino Mega Master
+    & \texttt{MasterLanLink}, \texttt{MasterCanGateway},
+      \texttt{HmiService} \\
+  Arduino Mega Slave
+    & \texttt{EnvironmentControl}, \texttt{EmergencyStop},
+      \texttt{DriveControlUnit}, \texttt{Logger} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Kommunikationskanäle}
+
+\begin{itemize}
+  \item \textbf{LAN} (Ethernet): Jetson Nano $\leftrightarrow$ Arduino Mega Master. \\
+    Überträgt Autonomie-Kommandos und Zonen-Updates vom Jetson zum Master.
+  \item \textbf{CAN-Bus}: Arduino Mega Master $\leftrightarrow$ Arduino Mega Slave. \\
+    Überträgt CAN-Pakete mit Zonenstatus, Emergency-Ereignissen und Steuerbefehlen.
+    \assumption{CAN-Datenklasse kapselt Paketstruktur (ID, Payload, Timestamp).}
+\end{itemize}
+
+\subsection{Rationale der Verteilung}
+
+Die Platzierung des Emergency Stop direkt auf dem Arduino Mega Slave
+neben der \texttt{DriveControlUnit} verfolgt folgende Ziele:
+
+\begin{enumerate}
+  \item \textbf{Minimale Latenz:} Kein zusätzlicher Kommunikationsweg zwischen
+        Sicherheitslogik und Motorsteuerung.
+  \item \textbf{Isolation:} Ausfall des Jetson oder des Masters hat keinen direkten
+        Einfluss auf die Fähigkeit, einen Stopp einzuleiten.
+  \item \textbf{Determinismus:} Der Slave führt eine einfache Echtzeit-Logik aus;
+        kein OS-Overhead wie auf dem Jetson.
+\end{enumerate}
+
+\todobox{Latenzzahlen (typische CAN-Zykluszeit, LAN-Latenz) ergänzen,
+sobald Messungen vorliegen.}

@@ -1,0 +1,151 @@
+% =============================================================
+%  Kapitel 4 – Dynamisches Verhalten (Global Software Control + Boundary Conditions)
+% =============================================================
+\section{Dynamisches Verhalten des Systems}
+\label{sec:dynamik}
+
+Dieser Abschnitt beschreibt das Laufzeitverhalten anhand von Sequenzdiagrammen.
+Er umfasst sowohl den \emph{Global Software Control} (regulärer Betrieb mit
+Emergency Stop) als auch die \emph{Boundary Conditions} (Systemstart, Shutdown,
+Fehlerbehandlung).
+
+% ------------------------------------------------------------
+\subsection{Global Software Control: Auslösung durch Safety-Zone}
+\label{sec:seq_safetyzone}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{04_Sequence_SafetyZone}
+  \caption{Sequenzdiagramm: Auslösung des Emergency Stop durch Safety-Zone (Rot)}
+  \label{fig:seq_safetyzone}
+\end{figure}
+
+Wird eine Distanz $\leq 15\,\mathrm{cm}$ erkannt (rote Sicherheitszone), läuft
+folgender Ablauf ab:
+
+\begin{enumerate}
+  \item Der \texttt{SensorFusionAdapter} auf dem Jetson meldet ein Objekt in der
+        Safety-Zone.
+  \item Der \texttt{TTCObserver} erzeugt ein \texttt{ZoneUpdate(Safety)}-Ereignis.
+  \item Über LAN $\to$ \texttt{MasterLanLink} $\to$ \texttt{MasterCanGateway}
+        wird ein CAN-Paket generiert.
+  \item Das CAN-Paket wird vom \texttt{EnvironmentControl}-Interface auf dem Slave
+        empfangen und an \texttt{EmergencyStop} weitergegeben.
+  \item Der Emergency Stop wechselt in den Zustand \texttt{EmergencyStop},
+        sendet einen \textbf{Stop-Befehl} an die \texttt{DriveControlUnit}
+        und löst einen \texttt{Logger.log(ERROR, "Safety zone triggered")}-Aufruf aus.
+  \item Die Status-LED wechselt auf Rot.
+\end{enumerate}
+
+\textbf{Wichtig:} Das Fahrzeug bleibt blockiert, bis eine manuelle Freigabe
+die Guard-Bedingung erfüllt (vgl.\ Abschnitt~\ref{sec:seq_release}).
+
+% ------------------------------------------------------------
+\subsection{Boundary Condition: Systemstart (Startup)}
+\label{sec:seq_startup}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{05_Sequence_Startup}
+  \caption{Sequenzdiagramm: Startup-Verhalten}
+  \label{fig:seq_startup}
+\end{figure}
+
+Beim Systemstart werden alle Komponenten initialisiert.
+Der Emergency Stop beginnt automatisch im Zustand \texttt{SoftStop}
+(\emph{Safe-Default}): Das Fahrzeug ist erst nach einer expliziten
+manuellen Freigabe fahrbereit.
+
+\textbf{Ablauf:}
+\begin{enumerate}
+  \item Alle Hardware-Einheiten starten ihre Initialisierungsroutine.
+  \item \texttt{EmergencyStop} wechselt von \texttt{Initialization}
+        nach \texttt{SoftStop}.
+  \item \texttt{Logger} registriert \texttt{INFO: System startup complete}.
+  \item Fahrzeug wartet auf Freigabe-Signal (Taster/Button).
+\end{enumerate}
+
+% ------------------------------------------------------------
+\subsection{Boundary Condition: Freigabe nach Emergency Stop (Release)}
+\label{sec:seq_release}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{05_Sequence_Release}
+  \caption{Sequenzdiagramm: Manuelle Freigabe nach Emergency Stop}
+  \label{fig:seq_release}
+\end{figure}
+
+Nach einem Emergency Stop ist eine manuelle Freigabe erforderlich.
+Die Guard-Bedingung muss vollständig erfüllt sein:
+
+\begin{itemize}
+  \item Safety-Zone ist \textbf{nicht} mehr aktiv (kein Objekt in Rot).
+  \item Kein Fehler ist aktiv (\texttt{errorFlag == false}).
+\end{itemize}
+
+Erst dann erfolgt:
+\begin{enumerate}
+  \item Zustandswechsel \texttt{EmergencyStop} $\to$ \texttt{Normal}.
+  \item Aktivierung der \texttt{DriveControlUnit} (Freigabe der Motorsteuerung).
+  \item \texttt{Logger.log(INFO, "System released, resuming normal operation")}.
+\end{enumerate}
+
+% ------------------------------------------------------------
+\subsection{Boundary Condition: Freigabe abgelehnt (Release Rejected)}
+\label{sec:seq_releaserejected}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{05_Sequence_ReleaseRejected}
+  \caption{Sequenzdiagramm: Freigabe abgelehnt (Guard nicht erfüllt)}
+  \label{fig:seq_releaserejected}
+\end{figure}
+
+Ist die Safety-Zone noch aktiv oder liegt ein Fehler vor,
+wird der Freigabe-Request \textbf{abgelehnt}.
+Der Zustand bleibt unverändert (\texttt{EmergencyStop}).
+\texttt{Logger} protokolliert \texttt{WARNING: Release rejected – condition not met}.
+
+% ------------------------------------------------------------
+\subsection{Boundary Condition: Fehlerbehandlung (Error)}
+\label{sec:seq_error}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{05_Sequence_Error}
+  \caption{Sequenzdiagramm: Fehlerbehandlung (fehlende Sensordaten)}
+  \label{fig:seq_error}
+\end{figure}
+
+Fehlen gültige Sensordaten (z.\,B.\ LiDAR-Ausfall, CAN-Timeout),
+greift das \textbf{Fail-Safe-Prinzip}:
+
+\begin{enumerate}
+  \item \texttt{EnvironmentControl} detektiert fehlende/ungültige CAN-Daten.
+  \item \texttt{EmergencyStop} erhält \texttt{ErrorDetected}-Ereignis.
+  \item Zustandswechsel nach \texttt{SoftStop} (falls noch nicht gestoppt).
+  \item \texttt{Logger.log(ERROR, "Sensor data missing – soft stop engaged")}.
+\end{enumerate}
+
+\textbf{Regel:} Keine gültigen Daten $\Rightarrow$ Stopp + Logging (keine Ausnahmen).
+
+% ------------------------------------------------------------
+\subsection{Boundary Condition: Shutdown}
+\label{sec:seq_shutdown}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{05_Sequence_Shutdown}
+  \caption{Sequenzdiagramm: Kontrollierter Shutdown}
+  \label{fig:seq_shutdown}
+\end{figure}
+
+Bei einem \texttt{ShutdownRequest}:
+\begin{enumerate}
+  \item \texttt{EmergencyStop} empfängt das Shutdown-Ereignis.
+  \item Zustandswechsel nach \texttt{SoftStop}.
+  \item Stop-Befehl an \texttt{DriveControlUnit}.
+  \item \texttt{Logger.log(INFO, "Shutdown initiated")}.
+  \item Alle Subsysteme fahren geordnet herunter.
+\end{enumerate}

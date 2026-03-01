@@ -1,0 +1,192 @@
+% =============================================================
+%  Kapitel 5 – Detailed Design: Emergency Stop
+% =============================================================
+\section{Detailed Design: Emergency Stop}
+\label{sec:detaileddesign}
+
+Dieser Abschnitt fokussiert ausschließlich auf das
+\texttt{EmergencyStop}-Modul und beschreibt sein Klassendesign,
+den internen Ablauf sowie den vollständigen Zustandsautomaten.
+
+% ------------------------------------------------------------
+\subsection{Klassendesign}
+\label{sec:estop_klassen}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{06_EStop_Class_Detailed}
+  \caption{Detailliertes Klassendiagramm – EmergencyStop inkl.\ private Methoden}
+  \label{fig:estop_class}
+\end{figure}
+
+Die Klasse \texttt{EmergencyStop} kapselt den vollständigen Sicherheitszustand.
+
+\subsubsection{Attribute}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{>{\ttfamily}p{4.5cm} >{\ttfamily}p{3cm} p{6cm}}
+  \toprule
+  \normalfont\textbf{Name} & \normalfont\textbf{Typ} & \normalfont\textbf{Beschreibung} \\
+  \midrule
+  currentState   & EStopState  & Aktueller Zustand des Automaten \\
+  errorFlag      & bool        & Aktiver Fehler vorhanden \\
+  safetyZoneActive & bool      & Safety-Zone (Rot) gerade aktiv \\
+  driveRef       & DriveControlUnit* & Referenz auf Motorsteuerung \\
+  loggerRef      & Logger*     & Referenz auf Logging-Modul \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Öffentliche Operationen (Public Interface)}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{>{\ttfamily}p{6.5cm} p{7cm}}
+  \toprule
+  \normalfont\textbf{Signatur} & \normalfont\textbf{Beschreibung} \\
+  \midrule
+  onZoneUpdate(zone: Zone) : void
+    & Eingehende Zonenänderung verarbeiten (Safety / Normal). \\
+  onEmergencyButton() : void
+    & Pilzknopf-Event verarbeiten. \\
+  onFrontTrigger() : void
+    & Fronttaster-Event verarbeiten. \\
+  onReleaseRequest() : void
+    & Manuelle Freigabe anfordern; Guard wird geprüft. \\
+  onErrorDetected() : void
+    & Fehler-Ereignis (z.\,B.\ fehlende Sensordaten) verarbeiten. \\
+  onShutdownRequest() : void
+    & Kontrollierter Shutdown einleiten. \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Private Methoden}
+
+Alle internen Handler sind als \textbf{private Methoden} implementiert,
+um die Kapselung der Zustandslogik zu gewährleisten.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{>{\ttfamily}p{6.5cm} p{7cm}}
+  \toprule
+  \normalfont\textbf{Signatur} & \normalfont\textbf{Beschreibung} \\
+  \midrule
+  triggerEmergencyStop() : void
+    & Setzt Zustand auf \texttt{EmergencyStop}; ruft \texttt{stopDrive()} auf. \\
+  triggerSoftStop() : void
+    & Setzt Zustand auf \texttt{SoftStop}; ruft \texttt{stopDrive()} auf. \\
+  stopDrive() : void
+    & Sendet Stop-Befehl an \texttt{DriveControlUnit}. \\
+  enableDrive() : void
+    & Sendet Freigabe-Befehl an \texttt{DriveControlUnit}. \\
+  checkReleaseGuard() : bool
+    & Prüft: \texttt{!safetyZoneActive \&\& !errorFlag}. \\
+  logEvent(level: LogLevel, msg: string) : void
+    & Delegiert an \texttt{Logger}; fügt Zeitstempel hinzu. \\
+  transitionTo(state: EStopState) : void
+    & Führt Zustandsübergang durch und protokolliert ihn. \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Enum: EStopState}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{>{\ttfamily}p{4cm} p{9cm}}
+  \toprule
+  \normalfont\textbf{Wert} & \normalfont\textbf{Bedeutung} \\
+  \midrule
+  Initialization & Startphase; alle Aktuatoren gesperrt. \\
+  SoftStop       & Sicherer Stopp; automatisch wiederherstellbar nach Freigabe. \\
+  Normal         & Normalbetrieb; \texttt{DriveControlUnit} freigegeben. \\
+  EmergencyStop  & Notfall-Stopp; blockiert bis manuelle Freigabe + Guard-Check. \\
+  HardStop       & Höchste Priorität; hardware-seitiger Stopp (kein SW-Override). \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\todobox{Vollständige Liste aller privaten Methoden mit Vor-/Nachbedingungen
+(Design by Contract) noch auszuarbeiten.}
+
+% ------------------------------------------------------------
+\subsection{Interner Ablauf (Sequenzdiagramm)}
+\label{sec:estop_seq}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{06_EStop_Internal_Sequence}
+  \caption{Internes Sequenzdiagramm – Ablauf innerhalb von EmergencyStop}
+  \label{fig:estop_seq}
+\end{figure}
+
+Das interne Sequenzdiagramm (Abbildung~\ref{fig:estop_seq}) zeigt,
+wie ein eingehender Event durch die privaten Methoden verarbeitet wird.
+Die Verarbeitung folgt immer dem gleichen Schema:
+
+\begin{enumerate}
+  \item \textbf{Event-Empfang} über eine öffentliche Methode
+        (z.\,B.\ \texttt{onZoneUpdate()}).
+  \item \textbf{Guard-Prüfung} (falls erforderlich) durch \texttt{checkReleaseGuard()}.
+  \item \textbf{Zustandsübergang} über \texttt{transitionTo()} mit automatischem Logging.
+  \item \textbf{Aktorsteuerung}: Aufruf von \texttt{stopDrive()} oder \texttt{enableDrive()}.
+  \item \textbf{Logging} über \texttt{logEvent()} mit Level und Zeitstempel.
+\end{enumerate}
+
+Diese Trennung hält die Event-Handler frei von direkten Hardware-Zugriffen
+und ermöglicht einfaches Unit-Testing.
+
+% ------------------------------------------------------------
+\subsection{Zustandsautomat (State Machine)}
+\label{sec:estop_statemachine}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{06_EStop_StateMachine}
+  \caption{Zustandsautomat – vollständiges Verhalten von EmergencyStop}
+  \label{fig:estop_statemachine}
+\end{figure}
+
+Der Zustandsautomat (Abbildung~\ref{fig:estop_statemachine}) definiert das
+vollständige Verhalten von \texttt{EmergencyStop}.
+
+\subsubsection{Zustandsübergänge}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{>{\ttfamily}p{3.5cm} p{4cm} >{\ttfamily}p{3.5cm}}
+  \toprule
+  \normalfont\textbf{Von} & \normalfont\textbf{Trigger / Guard} & \normalfont\textbf{Nach} \\
+  \midrule
+  Initialization    & SystemReady                          & SoftStop \\
+  SoftStop          & ReleaseRequest [Guard OK]            & Normal \\
+  Normal            & ZoneUpdate(Safety)                   & EmergencyStop \\
+  Normal            & EmergencyButton / FrontTrigger       & EmergencyStop \\
+  Normal            & ErrorDetected                        & SoftStop \\
+  Normal            & ShutdownRequest                      & SoftStop \\
+  EmergencyStop     & ReleaseRequest [Guard OK]            & Normal \\
+  EmergencyStop     & ReleaseRequest [Guard FAIL]          & EmergencyStop \\
+  EmergencyStop     & ErrorDetected                        & SoftStop \\
+  SoftStop          & ErrorDetected                        & SoftStop \\
+  * (alle)          & HardStopSignal                       & HardStop \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\subsubsection{Besondere Eigenschaften}
+
+\begin{itemize}
+  \item \textbf{HardStop} hat die höchste Priorität; er kann aus jedem Zustand
+        erreicht werden und ist nicht softwareseitig aufhebbar.
+  \item \textbf{EmergencyStop} erfordert zwingend eine manuelle Freigabe plus
+        erfolgreiche Guard-Prüfung.
+  \item \textbf{ErrorDetected} führt immer zu \texttt{SoftStop}
+        (Fail-Safe-Prinzip).
+  \item \textbf{ShutdownRequest} führt immer zu \texttt{SoftStop}.
+\end{itemize}
+
+\todobox{Activity-Diagramme für die wichtigsten privaten Methoden
+(\texttt{checkReleaseGuard}, \texttt{triggerEmergencyStop}) ausarbeiten
+oder begründen, warum die State-Machine hinreichend ist.}

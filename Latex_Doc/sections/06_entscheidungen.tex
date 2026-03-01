@@ -1,0 +1,118 @@
+% =============================================================
+%  Kapitel 6 – Architektonische Entscheidungen
+% =============================================================
+\section{Architektonische Entscheidungen}
+\label{sec:entscheidungen}
+
+% ------------------------------------------------------------
+\subsection{Sprachauswahl: C vs.\ C++}
+\label{sec:sprachauswahl}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{>{\bfseries}p{3.5cm} p{5.5cm} p{5.5cm}}
+  \toprule
+  & \textbf{C} & \textbf{C++} \\
+  \midrule
+  Vorteile
+    & Volle Kontrolle, minimaler Overhead, weit verbreitet auf Embedded \\
+    & OOP (Klassen, Vererbung), STL, bessere Kapselung, Lesbarkeit \\
+  Nachteile
+    & Keine Objektorientierung, schlechte Kapselung, fehleranfälliger Code \\
+    & Leicht erhöhter Code-Footprint, RTTI/Exceptions ggf.\ deaktivieren \\
+  Eignung Arduino Mega
+    & Ja
+    & Ja (Arduino-Framework basiert auf C++) \\
+  Eignung Jetson Nano
+    & Ja
+    & Ja \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\textbf{Entscheidung: C++}
+
+Begründung:
+\begin{itemize}
+  \item Das Modell ist objektorientiert (Klassen, Interfaces, Enums).
+        C++ erlaubt eine direkte 1:1-Umsetzung des UML-Designs.
+  \item Arduino-Framework basiert nativ auf C++ (Klassen wie \texttt{HardwareSerial}
+        sind C++-Klassen).
+  \item Exceptions und RTTI werden \textbf{deaktiviert} (Arduino-Standard),
+        um Overhead zu vermeiden.
+  \item Die \texttt{Logger}-Klasse, \texttt{DriveControlUnit}-Abstraktion und
+        das Interface \texttt{EnvironmentControl} profitieren von OOP-Kapselung.
+\end{itemize}
+
+\textbf{Alternativen:}
+\begin{itemize}
+  \item \emph{Reines C} wäre möglich, würde aber alle Klassen als Structs mit
+        Funktionszeigern erfordern – erheblich mehr Boilerplate ohne Mehrwert.
+  \item \emph{Rust} wäre sicherheitstechnisch attraktiv, ist aber auf Arduino-
+        Targets nicht offiziell unterstützt.
+\end{itemize}
+
+\todobox{Kurze Begründung der Sprachauswahl (1--2 Sätze) ins finale Dokument
+aufnehmen und mit dem Team abstimmen.}
+
+% ------------------------------------------------------------
+\subsection{Verteilte Architektur}
+\label{sec:entsch_verteilung}
+
+\textbf{Entscheidung:} Drei getrennte Recheneinheiten (Jetson, Master, Slave)
+statt Mono-Architektur.
+
+\textbf{Rationale:}
+\begin{itemize}
+  \item \emph{Separation of Concerns:} Wahrnehmung (Jetson) und Sicherheit (Slave)
+        sind physisch und softwareseitig getrennt.
+  \item \emph{Determinismus:} Der Slave führt eine einfache Regellogik ohne
+        OS-Overhead aus.
+  \item \emph{Fault Isolation:} Ein Absturz des Jetson deaktiviert den Emergency Stop
+        nicht (Fail-Safe: Slave stoppt selbstständig bei ausbleibenden Daten).
+\end{itemize}
+
+\textbf{Alternative:} Alles auf dem Jetson Nano (Mono-Architektur).
+Wurde verworfen, da dies einen Single Point of Failure schafft und
+die Reaktionszeit durch OS-Scheduling unvorhersehbar wird.
+
+% ------------------------------------------------------------
+\subsection{Fail-Safe-Prinzip}
+\label{sec:entsch_failsafe}
+
+\textbf{Entscheidung:} Im Zweifel immer stoppen.
+
+Konkrete Umsetzungen:
+\begin{itemize}
+  \item Startup beginnt in \texttt{SoftStop} (kein automatisches Losfahren).
+  \item Fehlende Sensordaten $\Rightarrow$ \texttt{SoftStop} + Logging.
+  \item \texttt{HardStop} ist von keiner Zustand aus aufhebbar.
+\end{itemize}
+
+% ------------------------------------------------------------
+\subsection{Klare Verantwortlichkeiten}
+\label{sec:entsch_verantwortlichkeiten}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{>{\bfseries}p{4cm} p{9.5cm}}
+  \toprule
+  Komponente & Alleinige Verantwortlichkeit \\
+  \midrule
+  TTCObserver     & Normal Operation (Gelb/Grün); kein Zugriff auf Emergency Stop. \\
+  EmergencyStop   & Sicherheits-Zustände (Rot, Knopf, Taster); kein Zugriff auf TTC. \\
+  Logger          & Persistentes Logging; keine Entscheidungslogik. \\
+  DriveControlUnit & Motorsteuerung; reagiert nur auf explizite Stop-/Go-Befehle. \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+% ------------------------------------------------------------
+\subsection{CAN als Kommunikationsprotokoll}
+\label{sec:entsch_can}
+
+\textbf{Rationale:} CAN ist für Automotive-Systeme optimiert, bietet priorisierungsbasierte
+Arbitrierung und eine hardware-gesicherte Fehlerkennung (CRC, ACK). Dies passt besser
+zu den Echtzeit-Anforderungen einer Sicherheitsfunktion als eine LAN-basierte Lösung.
+
+\assumption{CAN-Zykluszeit $< 5\,\mathrm{ms}$; konkrete Werte aus Systemtest nachzutragen.}
