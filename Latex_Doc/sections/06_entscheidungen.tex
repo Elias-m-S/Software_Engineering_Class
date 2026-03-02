@@ -39,9 +39,6 @@ Da das Arduino-Framework selbst auf C++ basiert
 (z.\,B.\ \texttt{HardwareSerial}, \texttt{Stream} als C++-Klassen)
 und der Jetson Nano Linux mit vollem C++-Support ausführt,
 ist C++ auf allen drei Zielplattformen nativ verfügbar.
-Zur Minimierung des Speicher- und Laufzeit-Overheads werden
-Exceptions und RTTI im Compiler deaktiviert (\texttt{-fno-exceptions
--fno-rtti}), was auf Arduino-Targets Standard ist.
 Insgesamt bietet C++ gegenüber reinem C eine deutlich bessere
 Kapselung (z.\,B.\ private Methoden in \texttt{EmergencyStop})
 bei vernachlässigbarem Mehraufwand.
@@ -83,7 +80,7 @@ Konkrete Umsetzungen:
 \begin{itemize}
   \item Startup beginnt in \texttt{SoftStop} (kein automatisches Losfahren).
   \item Fehlende Sensordaten $\Rightarrow$ \texttt{SoftStop} + Logging.
-  \item \texttt{HardStop} ist von keiner Zustand aus aufhebbar.
+  \item \texttt{HardStop} ist von keinem Zustand aus aufhebbar.
 \end{itemize}
 
 % ------------------------------------------------------------

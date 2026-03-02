@@ -25,7 +25,7 @@ Die Kommunikation erfolgt über:
 
 Die Platzierung des Emergency Stop auf dem Slave minimiert Kommunikationsverzögerungen
 zur Motorsteuerung (\emph{DriveControlUnit}) und stellt eine deterministische
-Reaktionszeit sicher.
+Reaktionszeit sicher (vgl.\ Abbildung~\ref{fig:context}).
 
 \begin{figure}[H]
   \centering
@@ -76,7 +76,7 @@ pro Hardware-Subsystem.
   \label{fig:jetson_classes}
 \end{figure}
 
-Hauptverantwortlichkeiten des Jetson-Subsystems:
+Hauptverantwortlichkeiten des Jetson-Subsystems (Abbildung~\ref{fig:jetson_classes}):
 \begin{description}
   \item[\texttt{AutonomyController}]
     Koordiniert autonomes Fahrverhalten; empfängt Zonenstatus vom \ac{TTC}-Observer.
@@ -97,7 +97,7 @@ Hauptverantwortlichkeiten des Jetson-Subsystems:
   \label{fig:master_classes}
 \end{figure}
 
-Hauptverantwortlichkeiten des Master-Subsystems:
+Hauptverantwortlichkeiten des Master-Subsystems (Abbildung~\ref{fig:master_classes}):
 \begin{description}
   \item[\texttt{MasterLanLink}]
     Empfängt Befehle vom Jetson über \ac{LAN} und leitet sie auf den \ac{CAN}-Bus weiter.
@@ -143,7 +143,7 @@ Anwendungsschicht und ermöglicht ein einheitliches Logging.
   \label{fig:slave_classes}
 \end{figure}
 
-Hauptverantwortlichkeiten des Slave-Subsystems:
+Hauptverantwortlichkeiten des Slave-Subsystems (Abbildung~\ref{fig:slave_classes}):
 \begin{description}
   \item[\texttt{EnvironmentControl}]
     Schnittstelle zur Empfangsseite des \ac{CAN}-Busses; übersetzt eingehende Pakete

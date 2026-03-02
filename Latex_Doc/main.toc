@@ -38,14 +38,11 @@
 \contentsline {paragraph}{\nonumberline Aktivitätsbeschreibung: \texttt {checkReleaseGuard()}.}{23}{paragraph*.12}%
 \contentsline {section}{\numberline {6}Architektonische Entscheidungen}{24}{section.6}%
 \contentsline {subsection}{\numberline {6.1}Sprachauswahl: C vs.\ C++}{24}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Verteilte Architektur}{25}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.2}Verteilte Architektur}{24}{subsection.6.2}%
 \contentsline {subsection}{\numberline {6.3}Fail-Safe-Prinzip}{25}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Klare Verantwortlichkeiten}{26}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.4}Klare Verantwortlichkeiten}{25}{subsection.6.4}%
 \contentsline {subsection}{\numberline {6.5}\acsu {CAN} als Kommunikationsprotokoll}{26}{subsection.6.5}%
 \contentsline {section}{\numberline {7}Traceability: Anforderung $\to $ Artefakt}{26}{section.7}%
-\contentsline {section}{\numberline {8}Nächste Schritte und offene Punkte}{28}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Priorisierte To-do-Liste}{28}{subsection.8.1}%
-\contentsline {subsection}{\numberline {8.2}Bekannte Annahmen (zur Überprüfung)}{29}{subsection.8.2}%
-\contentsline {section}{\nonumberline Abbildungsverzeichnis}{30}{section*.15}%
-\contentsline {section}{Abkürzungsverzeichnis}{31}{section*.16}%
+\contentsline {section}{\nonumberline Abbildungsverzeichnis}{28}{section*.15}%
+\contentsline {section}{Abkürzungsverzeichnis}{29}{section*.16}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

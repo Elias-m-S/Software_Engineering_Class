@@ -21,7 +21,7 @@ Fehlerbehandlung).
 \end{figure}
 
 Wird eine Distanz $\leq 15\,\mathrm{cm}$ erkannt (rote Sicherheitszone), läuft
-folgender Ablauf ab:
+folgender Ablauf ab (Abbildung~\ref{fig:seq_safetyzone}):
 
 \begin{enumerate}
   \item Der \texttt{SensorFusionAdapter} auf dem Jetson meldet ein Objekt in der
@@ -51,7 +51,7 @@ die Guard-Bedingung erfüllt (vgl.\ Abschnitt~\ref{sec:seq_release}).
   \label{fig:seq_startup}
 \end{figure}
 
-Beim Systemstart werden alle Komponenten initialisiert.
+Beim Systemstart (Abbildung~\ref{fig:seq_startup}) werden alle Komponenten initialisiert.
 Der Emergency Stop beginnt automatisch im Zustand \texttt{SoftStop}
 (\emph{Safe-Default}): Das Fahrzeug ist erst nach einer expliziten
 manuellen Freigabe fahrbereit.
@@ -76,7 +76,7 @@ manuellen Freigabe fahrbereit.
   \label{fig:seq_release}
 \end{figure}
 
-Nach einem Emergency Stop ist eine manuelle Freigabe erforderlich.
+Nach einem Emergency Stop ist eine manuelle Freigabe erforderlich (Abbildung~\ref{fig:seq_release}).
 Die Guard-Bedingung muss vollständig erfüllt sein:
 
 \begin{itemize}
@@ -103,7 +103,7 @@ Erst dann erfolgt:
 \end{figure}
 
 Ist die Safety-Zone noch aktiv oder liegt ein Fehler vor,
-wird der Freigabe-Request \textbf{abgelehnt}.
+wird der Freigabe-Request \textbf{abgelehnt} (Abbildung~\ref{fig:seq_releaserejected}).
 Der Zustand bleibt unverändert (\texttt{EmergencyStop}).
 \texttt{Logger} protokolliert \texttt{WARNING: Release rejected – condition not met}.
 
@@ -119,7 +119,7 @@ Der Zustand bleibt unverändert (\texttt{EmergencyStop}).
 \end{figure}
 
 Fehlen gültige Sensordaten (z.\,B.\ LiDAR-Ausfall, \ac{CAN}-Timeout),
-greift das \textbf{Fail-Safe-Prinzip}:
+greift das \textbf{Fail-Safe-Prinzip} (Abbildung~\ref{fig:seq_error}):
 
 \begin{enumerate}
   \item \texttt{EnvironmentControl} detektiert fehlende/ungültige \ac{CAN}-Daten.
@@ -141,7 +141,7 @@ greift das \textbf{Fail-Safe-Prinzip}:
   \label{fig:seq_shutdown}
 \end{figure}
 
-Bei einem \texttt{ShutdownRequest}:
+Bei einem \texttt{ShutdownRequest} (Abbildung~\ref{fig:seq_shutdown}):
 \begin{enumerate}
   \item \texttt{EmergencyStop} empfängt das Shutdown-Ereignis.
   \item Zustandswechsel nach \texttt{SoftStop}.
