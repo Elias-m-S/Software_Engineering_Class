@@ -29,11 +29,11 @@ folgender Ablauf ab (Abbildung~\ref{fig:seq_safetyzone}):
   \item Der \texttt{TTCObserver} erzeugt ein \texttt{ZoneUpdate(Safety)}-Ereignis.
   \item Über \ac{LAN} $\to$ \texttt{MasterLanLink} $\to$ \texttt{MasterCanGateway}
         wird ein \ac{CAN}-Paket generiert.
-  \item Das \ac{CAN}-Paket wird vom \texttt{EnvironmentControl}-Interface auf dem Slave
+  \item Das \ac{CAN}-Paket wird vom \texttt{EnvironmentControl Interface}-Interface auf dem Slave
         empfangen und an \texttt{EmergencyStop} weitergegeben.
   \item Der Emergency Stop wechselt in den Zustand \texttt{EmergencyStop},
         sendet einen \textbf{Stop-Befehl} an die \texttt{DriveControlUnit}
-        und löst einen \texttt{Logger.log(ERROR, "Safety zone triggered")}-Aufruf aus.
+        und löst einen \texttt{Logging.log(ERROR, "Safety zone triggered")}-Aufruf aus.
   \item Die Status-\ac{LED} wechselt auf Rot.
 \end{enumerate}
 
@@ -61,7 +61,7 @@ manuellen Freigabe fahrbereit.
   \item Alle Hardware-Einheiten starten ihre Initialisierungsroutine.
   \item \texttt{EmergencyStop} wechselt von \texttt{Initialization}
         nach \texttt{SoftStop}.
-  \item \texttt{Logger} registriert \texttt{INFO: System startup complete}.
+  \item \texttt{Logging} registriert \texttt{INFO: System startup complete}.
   \item Fahrzeug wartet auf Freigabe-Signal (Taster/Button).
 \end{enumerate}
 
@@ -88,7 +88,7 @@ Erst dann erfolgt:
 \begin{enumerate}
   \item Zustandswechsel \texttt{EmergencyStop} $\to$ \texttt{Normal}.
   \item Aktivierung der \texttt{DriveControlUnit} (Freigabe der Motorsteuerung).
-  \item \texttt{Logger.log(INFO, "System released, resuming normal operation")}.
+  \item \texttt{Logging.log(INFO, "System released, resuming normal operation")}.
 \end{enumerate}
 
 % ------------------------------------------------------------
@@ -105,7 +105,7 @@ Erst dann erfolgt:
 Ist die Safety-Zone noch aktiv oder liegt ein Fehler vor,
 wird der Freigabe-Request \textbf{abgelehnt} (Abbildung~\ref{fig:seq_releaserejected}).
 Der Zustand bleibt unverändert (\texttt{EmergencyStop}).
-\texttt{Logger} protokolliert \texttt{WARNING: Release rejected – condition not met}.
+\texttt{Logging} protokolliert \texttt{WARNING: Release rejected – condition not met}.
 
 % ------------------------------------------------------------
 \subsection{Boundary Condition: Fehlerbehandlung (Error)}
@@ -122,10 +122,10 @@ Fehlen gültige Sensordaten (z.\,B.\ LiDAR-Ausfall, \ac{CAN}-Timeout),
 greift das \textbf{Fail-Safe-Prinzip} (Abbildung~\ref{fig:seq_error}):
 
 \begin{enumerate}
-  \item \texttt{EnvironmentControl} detektiert fehlende/ungültige \ac{CAN}-Daten.
+  \item \texttt{EnvironmentControl Interface} detektiert fehlende/ungültige \ac{CAN}-Daten.
   \item \texttt{EmergencyStop} erhält \texttt{ErrorDetected}-Ereignis.
   \item Zustandswechsel nach \texttt{SoftStop} (falls noch nicht gestoppt).
-  \item \texttt{Logger.log(ERROR, "Sensor data missing – soft stop engaged")}.
+  \item \texttt{Logging.log(ERROR, "Sensor data missing – soft stop engaged")}.
 \end{enumerate}
 
 \textbf{Regel:} Keine gültigen Daten $\Rightarrow$ Stopp + Logging (keine Ausnahmen).
@@ -146,6 +146,6 @@ Bei einem \texttt{ShutdownRequest} (Abbildung~\ref{fig:seq_shutdown}):
   \item \texttt{EmergencyStop} empfängt das Shutdown-Ereignis.
   \item Zustandswechsel nach \texttt{SoftStop}.
   \item Stop-Befehl an \texttt{DriveControlUnit}.
-  \item \texttt{Logger.log(INFO, "Shutdown initiated")}.
+  \item \texttt{Logging.log(INFO, "Shutdown initiated")}.
   \item Alle Subsysteme fahren geordnet herunter.
 \end{enumerate}

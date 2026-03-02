@@ -95,18 +95,10 @@ Konkrete Umsetzungen:
   \midrule
   TTCObserver     & Normal Operation (Gelb/Grün); kein Zugriff auf Emergency Stop. \\
   EmergencyStop   & Sicherheits-Zustände (Rot, Knopf, Taster); kein Zugriff auf \ac{TTC}. \\
-  Logger          & Persistentes Logging; keine Entscheidungslogik. \\
+  Logging         & Persistentes Logging; keine Entscheidungslogik. \\
   DriveControlUnit & Motorsteuerung; reagiert nur auf explizite Stop-/Go-Befehle. \\
   \bottomrule
 \end{tabular}
 \end{center}
 
 % ------------------------------------------------------------
-\subsection{\acsu{CAN} als Kommunikationsprotokoll}
-\label{sec:entsch_can}
-
-\textbf{Rationale:} \ac{CAN} ist für Automotive-Systeme optimiert, bietet priorisierungsbasierte
-Arbitrierung und eine hardware-gesicherte Fehlerkennung (\ac{CRC}, \ac{ACK}). Dies passt besser
-zu den Echtzeit-Anforderungen einer Sicherheitsfunktion als eine \ac{LAN}-basierte Lösung.
-
-\assumption{\ac{CAN}-Zykluszeit $< 5\,\mathrm{ms}$; konkrete Werte aus Systemtest nachzutragen.}

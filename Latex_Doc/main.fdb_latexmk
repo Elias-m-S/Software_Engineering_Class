@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 0 "main.bcf" "main.bbl" "main" 1772471127.95839 -1
+["biber main"] 0 "main.bcf" "main.bbl" "main" 1772472955.71 -1
   "Literatur.bib" 1772469206.03847 387 5c06d15a629ff768ef03560926e25793 ""
-  "main.bcf" 1772471127.63341 108038 cd44bf7dcbee4be32f0ddd7f44b43809 "pdflatex"
+  "main.bcf" 1772472955.36498 108038 cd44bf7dcbee4be32f0ddd7f44b43809 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1772471119.84574 "/home/kali/DHBW/Software_Engineering_Class/Latex_Doc/main.tex" "main.pdf" "main" 1772471127.95917 0
+["pdflatex"] 1772472948.97352 "/home/kali/DHBW/Software_Engineering_Class/Latex_Doc/main.tex" "main.pdf" "main" 1772472955.71087 0
   "../Diagram_SE/01_Context.png" 1772463387.43566 18870 400ff3e97d8faf436cbd265a4df83927 ""
   "../Diagram_SE/02_Component_Overview.png" 1772463387.43622 38595 a523e67e0f745bfca7d6d39b349b12e1 ""
   "../Diagram_SE/02_Jetson_ClassDiagram.png" 1772463387.43622 28257 fe2da97eab95334c687f234706221d92 ""
@@ -25,7 +25,7 @@
   "../Diagram_SE/Hardware_Architecture.png" 1772465769.79392 176808 4ac4a7e2b7a4a6cb8cf3ea45862c1eb6 ""
   "../Diagram_SE/Zone_Definition.png" 1772465769.79507 102265 02d18e9777b555a0ad26cfa29b918779 ""
   "/etc/texmf/web2c/texmf.cnf" 1771519061.55188 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/kali/DHBW/Software_Engineering_Class/Latex_Doc/main.tex" 1772471105.37734 4256 9e235414f00dc7d3dcd04c1b79815322 ""
+  "/home/kali/DHBW/Software_Engineering_Class/Latex_Doc/main.tex" 1772471250.23492 4255 9a9520f3ebe0c3ee4754fb6b96cf0493 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1200.tfm" 1136768653 3584 f80ddd985bd00e29e9a6047ebd9d4781 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmr12.tfm" 1136768653 1288 655e228510b4c2a1abe905c368440826 ""
@@ -182,19 +182,19 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1772464154 5541477 3118940318599480888143717dd32d64 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1772464219 3640199 321b72309e5d16cf641cf691ccdf8f60 ""
   "logos/logo_dhbw.png" 1772463387.4426 54644 64e2db80b26a4785c71b84c82a92c2a0 ""
-  "main.aux" 1772471127.60941 36133 98b54271264cb18a113e591a3aabf03b "pdflatex"
+  "main.aux" 1772472955.34498 34654 bda0afda6b2151f1f842dce3112a0a95 "pdflatex"
   "main.bbl" 1772470012.03815 2851 e08110a722682b55333f03f53075605a "biber main"
-  "main.lof" 1772471127.63879 2331 57981978c1d115f8878c7140b5fce1f0 "pdflatex"
-  "main.run.xml" 1772471127.63879 2334 605d4db6c5b9df51d6c344f858505d50 "pdflatex"
-  "main.tex" 1772471105.37734 4256 9e235414f00dc7d3dcd04c1b79815322 ""
-  "main.toc" 1772471127.63879 4530 b8656afb1c9aa36733ac4f08784a5a78 "pdflatex"
+  "main.lof" 1772472955.3697 2331 57981978c1d115f8878c7140b5fce1f0 "pdflatex"
+  "main.run.xml" 1772472955.3697 2334 605d4db6c5b9df51d6c344f858505d50 "pdflatex"
+  "main.tex" 1772471250.23492 4255 9a9520f3ebe0c3ee4754fb6b96cf0493 ""
+  "main.toc" 1772472955.3697 4340 6a9583c6a13bcec6c94b65ef8a03a44b "pdflatex"
   "sections/00_abkuerzungen.tex" 1772463387.45473 809 6bc17f4ee8b9397450fded1a805f2ec0 ""
-  "sections/01_einleitung.tex" 1772470004.07168 2631 7331df374f022a255814d337e0755748 ""
-  "sections/02_gesamtarchitektur.tex" 1772469190.8259 7129 ddf2346b40872a53b606ad609a10fa26 ""
-  "sections/03_deployment.tex" 1772463387.45528 2951 f6ed9330c67aceb0c01cc29b73472e5d ""
-  "sections/04_dynamik.tex" 1772463387.45528 6182 1ae2a0127af8b2fcad57adb538eaa96d ""
-  "sections/05_detailed_design.tex" 1772463387.45528 10486 e04bae9d45beab084c7fc5463856ccc8 ""
-  "sections/06_entscheidungen.tex" 1772463387.45528 4370 fcbff3ea1d32593c4d605e13d9694ff1 ""
+  "sections/01_einleitung.tex" 1772471575.78935 2177 9caf8ae77f3a066e50f154935ead6f86 ""
+  "sections/02_gesamtarchitektur.tex" 1772471575.69903 7138 c4adfb6cdbb0e37e3b19b4e6d00ca229 ""
+  "sections/03_deployment.tex" 1772472101.0658 2946 88174e7f356da028ff81ec4001e21c9e ""
+  "sections/04_dynamik.tex" 1772472499.367 6208 9a6298f9e5766cfdb677095699918cc6 ""
+  "sections/05_detailed_design.tex" 1772472948.57689 10487 3f490188bb41a670a8c8928595f433c6 ""
+  "sections/06_entscheidungen.tex" 1772472948.49289 3910 dd631e042f54058d74b10bbc185b4962 ""
   "sections/07_traceability.tex" 1772467272.82424 2959 a24037124b4e93f7a16f4a1169b93dab ""
   "sections/KI_Uebersicht.tex" 1772471111.28921 649 280656e59adcc23d4e439028c2064f41 ""
   (generated)

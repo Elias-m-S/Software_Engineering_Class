@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex 2026.3.2)  2 MAR 2026 18:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex 2026.3.2)  2 MAR 2026 18:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -940,10 +940,7 @@ File: logos/logo_dhbw.png Graphic file (type png)
 <use logos/logo_dhbw.png>
 Package pdftex.def Info: logos/logo_dhbw.png  used on input line 35.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
- [2]
-Package acronym Info: Label `acro:CAN' newly defined as it shall be overridden
-although it is yet undefined on input line 43.
-)
+ [2])
 \tf@toc=\write4
 \openout4 = `main.toc'.
 
@@ -967,71 +964,72 @@ Overfull \hbox (4.4342pt too wide) in paragraph at lines 19--21
 []\T1/lmr/bx/n/12 (-20) Out of Sco-pe: \T1/lmr/m/n/12 (-20) PC-Anwendung, [][][]Robot Ope-ra-ting Sys-tem ([])[]-Integration, [][][]Wireless
  []
 
-File: logos/logo_dhbw.png Graphic file (type png)
-<use logos/logo_dhbw.png>
-Package pdftex.def Info: logos/logo_dhbw.png  used on input line 37.
-(pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
-[1{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}]
 Package acronym Info: Label `acro:TTC' newly defined as it shall be overridden
-although it is yet undefined on input line 46.
-<../Diagram_SE/Zone_Definition.png, id=138, 357.58594pt x 243.91125pt>
+although it is yet undefined on input line 34.
+<../Diagram_SE/Zone_Definition.png, id=115, 357.58594pt x 243.91125pt>
 File: ../Diagram_SE/Zone_Definition.png Graphic file (type png)
 <use ../Diagram_SE/Zone_Definition.png>
-Package pdftex.def Info: ../Diagram_SE/Zone_Definition.png  used on input line 60.
+Package pdftex.def Info: ../Diagram_SE/Zone_Definition.png  used on input line 48.
 (pdftex.def)             Requested size: 432.48051pt x 295.01442pt.
-) (./sections/02_gesamtarchitektur.tex
-<../Diagram_SE/Hardware_Architecture.png, id=142, 415.05063pt x 300.12125pt>
-File: ../Diagram_SE/Hardware_Architecture.png Graphic file (type png)
-<use ../Diagram_SE/Hardware_Architecture.png>
-Package pdftex.def Info: ../Diagram_SE/Hardware_Architecture.png  used on input line 12.
-(pdftex.def)             Requested size: 432.48051pt x 312.73697pt.
 File: logos/logo_dhbw.png Graphic file (type png)
 <use logos/logo_dhbw.png>
-Package pdftex.def Info: logos/logo_dhbw.png  used on input line 15.
+Package pdftex.def Info: logos/logo_dhbw.png  used on input line 52.
+(pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
+[1{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}]) (./sections/02_gesamtarchitektur.tex
+File: logos/logo_dhbw.png Graphic file (type png)
+<use logos/logo_dhbw.png>
+Package pdftex.def Info: logos/logo_dhbw.png  used on input line 4.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
  [2
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.15 \end{figure}
-                  <../Diagram_SE/Zone_Definition.png>]
-Package acronym Info: Label `acro:LAN' newly defined as it shall be overridden
-although it is yet undefined on input line 33.
+l.4 \newpage
+             <../Diagram_SE/Zone_Definition.png>]
+<../Diagram_SE/Hardware_Architecture.png, id=141, 415.05063pt x 300.12125pt>
+File: ../Diagram_SE/Hardware_Architecture.png Graphic file (type png)
+<use ../Diagram_SE/Hardware_Architecture.png>
+Package pdftex.def Info: ../Diagram_SE/Hardware_Architecture.png  used on input line 13.
+(pdftex.def)             Requested size: 432.48051pt x 312.73697pt.
 File: logos/logo_dhbw.png Graphic file (type png)
 <use logos/logo_dhbw.png>
-Package pdftex.def Info: logos/logo_dhbw.png  used on input line 40.
+Package pdftex.def Info: logos/logo_dhbw.png  used on input line 34.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
  [3
 pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.40 
-      <../Diagram_SE/Hardware_Architecture.png>]
-<../Diagram_SE/01_Context.png, id=168, 710.655pt x 277.78781pt>
+l.34   \item \textbf
+                    {\ac{LAN}} (Jetson Nano $\leftrightarrow$ Arduino Mega M... <../Diagram_SE/Hardware_Architecture.png>]
+Package acronym Info: Label `acro:LAN' newly defined as it shall be overridden
+although it is yet undefined on input line 34.
+Package acronym Info: Label `acro:CAN' newly defined as it shall be overridden
+although it is yet undefined on input line 35.
+<../Diagram_SE/01_Context.png, id=154, 710.655pt x 277.78781pt>
 File: ../Diagram_SE/01_Context.png Graphic file (type png)
 <use ../Diagram_SE/01_Context.png>
-Package pdftex.def Info: ../Diagram_SE/01_Context.png  used on input line 43.
+Package pdftex.def Info: ../Diagram_SE/01_Context.png  used on input line 44.
 (pdftex.def)             Requested size: 432.48051pt x 169.0561pt.
-<../Diagram_SE/02_Component_Overview.png, id=170, 861.9703pt x 481.04718pt>
+<../Diagram_SE/02_Component_Overview.png, id=156, 861.9703pt x 481.04718pt>
 File: ../Diagram_SE/02_Component_Overview.png Graphic file (type png)
 <use ../Diagram_SE/02_Component_Overview.png>
-Package pdftex.def Info: ../Diagram_SE/02_Component_Overview.png  used on input line 56.
+Package pdftex.def Info: ../Diagram_SE/02_Component_Overview.png  used on input line 57.
 (pdftex.def)             Requested size: 432.48051pt x 241.35977pt.
 File: logos/logo_dhbw.png Graphic file (type png)
 <use logos/logo_dhbw.png>
-Package pdftex.def Info: logos/logo_dhbw.png  used on input line 60.
+Package pdftex.def Info: logos/logo_dhbw.png  used on input line 61.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
  [4
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.60 
+l.61 
       <../Diagram_SE/01_Context.png>]
-Overfull \hbox (17.72119pt too wide) in paragraph at lines 63--65
+Overfull \hbox (17.72119pt too wide) in paragraph at lines 64--66
 []\T1/lmr/m/n/12 (-20) Der [][]\T1/lmr/bx/n/12 (-20) -Observer \T1/lmr/m/n/12 (-20) ver-ar-bei-tet Sens-or-da-ten zur Be-stim-mung der Fahr-zo-ne (Grün/Gelb)
  []
 
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 67.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 68.
 (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1040,120 +1038,120 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-Overfull \hbox (4.75713pt too wide) in paragraph at lines 78--80
+Overfull \hbox (4.75713pt too wide) in paragraph at lines 79--81
 \T1/lmr/m/n/12 (-20) Die fol-gen-den Klas-sen-dia-gram-me zei-gen At-tri-bu-te und öf-fent-li-che Ope-ra-tio-nen pro Hardware-
  []
 
-<../Diagram_SE/02_Jetson_ClassDiagram.png, id=184, 607.51968pt x 210.03468pt>
+<../Diagram_SE/02_Jetson_ClassDiagram.png, id=173, 607.51968pt x 210.03468pt>
 File: ../Diagram_SE/02_Jetson_ClassDiagram.png Graphic file (type png)
 <use ../Diagram_SE/02_Jetson_ClassDiagram.png>
-Package pdftex.def Info: ../Diagram_SE/02_Jetson_ClassDiagram.png  used on input line 85.
+Package pdftex.def Info: ../Diagram_SE/02_Jetson_ClassDiagram.png  used on input line 86.
 (pdftex.def)             Requested size: 432.48051pt x 149.52306pt.
 File: logos/logo_dhbw.png Graphic file (type png)
 <use logos/logo_dhbw.png>
-Package pdftex.def Info: logos/logo_dhbw.png  used on input line 89.
+Package pdftex.def Info: logos/logo_dhbw.png  used on input line 90.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
 [5
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.89 
+l.90 
       <../Diagram_SE/02_Component_Overview.png>]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 92.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 93.
 
-Overfull \hbox (14.06758pt too wide) in paragraph at lines 95--97
+Overfull \hbox (14.06758pt too wide) in paragraph at lines 96--98
 []\T1/lmr/m/n/12 (-20) Berechnet Time-To-Collision aus Sens-or-da-ten; sen-det ZoneUpdate-Kommandos
  []
 
-<../Diagram_SE/02_Master_ClassDiagram.png, id=193, 682.04813pt x 382.42876pt>
+<../Diagram_SE/02_Master_ClassDiagram.png, id=183, 682.04813pt x 382.42876pt>
 File: ../Diagram_SE/02_Master_ClassDiagram.png Graphic file (type png)
 <use ../Diagram_SE/02_Master_ClassDiagram.png>
-Package pdftex.def Info: ../Diagram_SE/02_Master_ClassDiagram.png  used on input line 106.
+Package pdftex.def Info: ../Diagram_SE/02_Master_ClassDiagram.png  used on input line 107.
 (pdftex.def)             Requested size: 432.48051pt x 242.49527pt.
 File: logos/logo_dhbw.png Graphic file (type png)
 <use logos/logo_dhbw.png>
-Package pdftex.def Info: logos/logo_dhbw.png  used on input line 110.
+Package pdftex.def Info: logos/logo_dhbw.png  used on input line 111.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
 [6
 pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.110 
+l.111 
        <../Diagram_SE/02_Jetson_ClassDiagram.png>]
 Package acronym Info: Label `acro:OOP' newly defined as it shall be overridden
-although it is yet undefined on input line 125.
+although it is yet undefined on input line 126.
 
-Underfull \hbox (badness 7451) in paragraph at lines 137--138
+Underfull \hbox (badness 7451) in paragraph at lines 138--139
 []|\T1/lmr/m/n/12 (+20) Nutzdaten (bis zu 8Byte, [][]-
  []
 
 File: logos/logo_dhbw.png Graphic file (type png)
 <use logos/logo_dhbw.png>
-Package pdftex.def Info: logos/logo_dhbw.png  used on input line 142.
+Package pdftex.def Info: logos/logo_dhbw.png  used on input line 143.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
 [7
 pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.142 \end{center}
+l.143 \end{center}
                    <../Diagram_SE/02_Master_ClassDiagram.png>]
-<../Diagram_SE/02_Slave_ClassDiagram.png, id=220, 684.30656pt x 326.72063pt>
+<../Diagram_SE/02_Slave_ClassDiagram.png, id=210, 684.30656pt x 326.72063pt>
 File: ../Diagram_SE/02_Slave_ClassDiagram.png Graphic file (type png)
 <use ../Diagram_SE/02_Slave_ClassDiagram.png>
-Package pdftex.def Info: ../Diagram_SE/02_Slave_ClassDiagram.png  used on input line 152.
+Package pdftex.def Info: ../Diagram_SE/02_Slave_ClassDiagram.png  used on input line 153.
 (pdftex.def)             Requested size: 432.48051pt x 206.49313pt.
 File: logos/logo_dhbw.png Graphic file (type png)
 <use logos/logo_dhbw.png>
-Package pdftex.def Info: logos/logo_dhbw.png  used on input line 165.
+Package pdftex.def Info: logos/logo_dhbw.png  used on input line 166.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
  [8
 pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.165   \item[\texttt{DriveControlUnit}]
+l.166   \item[\texttt{DriveControlUnit}]
                                          <../Diagram_SE/02_Slave_ClassDiagram.png>]
-Overfull \hbox (11.11984pt too wide) in paragraph at lines 166--168
+Overfull \hbox (11.11984pt too wide) in paragraph at lines 167--169
 []\T1/lmr/m/n/12 (-20) Abstrahiert die Mo-tor-steue-rung; emp-fängt aus-schlieÿ-lich Stop-/Freigabe-
  []
 
 ) (./sections/03_deployment.tex
-<../Diagram_SE/03_Deployment.png, id=231, 924.45375pt x 229.60782pt>
+<../Diagram_SE/03_Deployment.png, id=221, 924.45375pt x 229.60782pt>
 File: ../Diagram_SE/03_Deployment.png Graphic file (type png)
 <use ../Diagram_SE/03_Deployment.png>
 Package pdftex.def Info: ../Diagram_SE/03_Deployment.png  used on input line 12.
 (pdftex.def)             Requested size: 432.48051pt x 107.41467pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 26--28
-[]|\T1/lmtt/m/n/12 AutonomyController\T1/lmr/m/n/12 (+20) , \T1/lmtt/m/n/12 TTCObserver\T1/lmr/m/n/12 (+20) ,
+Underfull \hbox (badness 10000) in paragraph at lines 26--27
+[]|\T1/lmtt/m/n/12 AutonomyController\T1/lmr/m/n/12 (+20) , \T1/lmtt/m/n/12 TTC-Observer\T1/lmr/m/n/12 (+20) ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 32--34
-[]|\T1/lmtt/m/n/12 EnvironmentControl\T1/lmr/m/n/12 (+20) , \T1/lmtt/m/n/12 EmergencyStop\T1/lmr/m/n/12 (+20) ,
+Underfull \hbox (badness 10000) in paragraph at lines 30--31
+[]|\T1/lmtt/m/n/12 EnvironmentControl Interface\T1/lmr/m/n/12 (+20) , \T1/lmtt/m/n/12 Emergency
  []
 
 File: logos/logo_dhbw.png Graphic file (type png)
 <use logos/logo_dhbw.png>
-Package pdftex.def Info: logos/logo_dhbw.png  used on input line 43.
+Package pdftex.def Info: logos/logo_dhbw.png  used on input line 40.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
 [9
 pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.43   \item \textbf
+l.40   \item \textbf
                     {\ac{CAN}-Bus}: Arduino Mega Master $\leftrightarrow$ Ar... <../Diagram_SE/03_Deployment.png>]
 Package acronym Info: Label `acro:OS' newly defined as it shall be overridden
-although it is yet undefined on input line 59.
+although it is yet undefined on input line 56.
 Package acronym Info: Label `acro:UDP' newly defined as it shall be overridden
-although it is yet undefined on input line 67.
+although it is yet undefined on input line 64.
 ) (./sections/04_dynamik.tex
 File: logos/logo_dhbw.png Graphic file (type png)
 <use logos/logo_dhbw.png>
 Package pdftex.def Info: logos/logo_dhbw.png  used on input line 13.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
  [10{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}]
-<../Diagram_SE/04_Sequence_SafetyZone.png, id=259, 937.25156pt x 438.8897pt>
+<../Diagram_SE/04_Sequence_SafetyZone.png, id=249, 937.25156pt x 438.8897pt>
 File: ../Diagram_SE/04_Sequence_SafetyZone.png Graphic file (type png)
 <use ../Diagram_SE/04_Sequence_SafetyZone.png>
 Package pdftex.def Info: ../Diagram_SE/04_Sequence_SafetyZone.png  used on input line 18.
@@ -1170,12 +1168,12 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) has
                                                   \__shipout_drop_firstpage_...
 l.42 
       <../Diagram_SE/04_Sequence_SafetyZone.png>]
-<../Diagram_SE/05_Sequence_Startup.png, id=280, 901.86937pt x 495.35063pt>
+<../Diagram_SE/05_Sequence_Startup.png, id=270, 901.86937pt x 495.35063pt>
 File: ../Diagram_SE/05_Sequence_Startup.png Graphic file (type png)
 <use ../Diagram_SE/05_Sequence_Startup.png>
 Package pdftex.def Info: ../Diagram_SE/05_Sequence_Startup.png  used on input line 49.
 (pdftex.def)             Requested size: 432.48051pt x 237.53885pt.
-<../Diagram_SE/05_Sequence_Release.png, id=282, 806.26219pt x 492.33937pt>
+<../Diagram_SE/05_Sequence_Release.png, id=272, 806.26219pt x 492.33937pt>
 File: ../Diagram_SE/05_Sequence_Release.png Graphic file (type png)
 <use ../Diagram_SE/05_Sequence_Release.png>
 Package pdftex.def Info: ../Diagram_SE/05_Sequence_Release.png  used on input line 74.
@@ -1190,7 +1188,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) ha
                                                   \__shipout_drop_firstpage_...
 l.78 
       <../Diagram_SE/05_Sequence_Startup.png>]
-<../Diagram_SE/05_Sequence_ReleaseRejected.png, id=294, 721.94719pt x 417.05812pt>
+<../Diagram_SE/05_Sequence_ReleaseRejected.png, id=284, 721.94719pt x 417.05812pt>
 File: ../Diagram_SE/05_Sequence_ReleaseRejected.png Graphic file (type png)
 <use ../Diagram_SE/05_Sequence_ReleaseRejected.png>
 Package pdftex.def Info: ../Diagram_SE/05_Sequence_ReleaseRejected.png  used on input line 100.
@@ -1205,7 +1203,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.11}) ha
                                                   \__shipout_drop_firstpage_...
 l.104 
        <../Diagram_SE/05_Sequence_Release.png>]
-<../Diagram_SE/05_Sequence_Error.png, id=306, 752.8125pt x 391.4625pt>
+<../Diagram_SE/05_Sequence_Error.png, id=295, 752.8125pt x 391.4625pt>
 File: ../Diagram_SE/05_Sequence_Error.png Graphic file (type png)
 <use ../Diagram_SE/05_Sequence_Error.png>
 Package pdftex.def Info: ../Diagram_SE/05_Sequence_Error.png  used on input line 116.
@@ -1220,7 +1218,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.12}) ha
                                                   \__shipout_drop_firstpage_...
 l.120 
        <../Diagram_SE/05_Sequence_ReleaseRejected.png>]
-<../Diagram_SE/05_Sequence_Shutdown.png, id=316, 758.835pt x 444.15938pt>
+<../Diagram_SE/05_Sequence_Shutdown.png, id=306, 758.835pt x 444.15938pt>
 File: ../Diagram_SE/05_Sequence_Shutdown.png Graphic file (type png)
 <use ../Diagram_SE/05_Sequence_Shutdown.png>
 Package pdftex.def Info: ../Diagram_SE/05_Sequence_Shutdown.png  used on input line 139.
@@ -1235,7 +1233,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.13}) ha
                                                   \__shipout_drop_firstpage_...
 l.143 
        <../Diagram_SE/05_Sequence_Error.png>]) (./sections/05_detailed_design.tex
-<../Diagram_SE/06_EStop_Class_Detailed.png, id=328, 778.40813pt x 487.06969pt>
+<../Diagram_SE/06_EStop_Class_Detailed.png, id=318, 778.40813pt x 487.06969pt>
 File: ../Diagram_SE/06_EStop_Class_Detailed.png Graphic file (type png)
 <use ../Diagram_SE/06_EStop_Class_Detailed.png>
 Package pdftex.def Info: ../Diagram_SE/06_EStop_Class_Detailed.png  used on input line 17.
@@ -1432,7 +1430,7 @@ File: logos/logo_dhbw.png Graphic file (type png)
 Package pdftex.def Info: logos/logo_dhbw.png  used on input line 156.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
 [19]
-<../Diagram_SE/06_EStop_Internal_Sequence.png, id=356, 383.93437pt x 510.40688pt>
+<../Diagram_SE/06_EStop_Internal_Sequence.png, id=346, 383.93437pt x 510.40688pt>
 File: ../Diagram_SE/06_EStop_Internal_Sequence.png Graphic file (type png)
 <use ../Diagram_SE/06_EStop_Internal_Sequence.png>
 Package pdftex.def Info: ../Diagram_SE/06_EStop_Internal_Sequence.png  used on input line 164.
@@ -1452,7 +1450,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.16}) ha
                                                   \__shipout_drop_firstpage_...
 l.174   \item \textbf
                      {Event-Empfang} Ã¼ber eine Ã¶ffentliche Methode <../Diagram_SE/06_EStop_Internal_Sequence.png>]
-<../Diagram_SE/06_EStop_StateMachine.png, id=369, 875.52094pt x 696.35156pt>
+<../Diagram_SE/06_EStop_StateMachine.png, id=359, 875.52094pt x 696.35156pt>
 File: ../Diagram_SE/06_EStop_StateMachine.png Graphic file (type png)
 <use ../Diagram_SE/06_EStop_StateMachine.png>
 Package pdftex.def Info: ../Diagram_SE/06_EStop_StateMachine.png  used on input line 191.
@@ -1524,21 +1522,12 @@ File: logos/logo_dhbw.png Graphic file (type png)
 <use logos/logo_dhbw.png>
 Package pdftex.def Info: logos/logo_dhbw.png  used on input line 63.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
- [25]
-Package acronym Info: Label `acro:CRC' newly defined as it shall be overridden
-although it is yet undefined on input line 109.
-Package acronym Info: Label `acro:ACK' newly defined as it shall be overridden
-although it is yet undefined on input line 109.
-File: logos/logo_dhbw.png Graphic file (type png)
-<use logos/logo_dhbw.png>
-Package pdftex.def Info: logos/logo_dhbw.png  used on input line 111.
-(pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
- [26]) (./sections/07_traceability.tex
+ [25]) (./sections/07_traceability.tex
 File: logos/logo_dhbw.png Graphic file (type png)
 <use logos/logo_dhbw.png>
 Package pdftex.def Info: logos/logo_dhbw.png  used on input line 4.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
- [27]
+ [26]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <17.28> on input line 5.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1562,7 +1551,7 @@ File: logos/logo_dhbw.png Graphic file (type png)
 <use logos/logo_dhbw.png>
 Package pdftex.def Info: logos/logo_dhbw.png  used on input line 164.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
- [28
+ [27
 
 ]
 Package tocbasic Info: character protrusion at lof deactivated on input line 165.
@@ -1574,7 +1563,7 @@ File: logos/logo_dhbw.png Graphic file (type png)
 <use logos/logo_dhbw.png>
 Package pdftex.def Info: logos/logo_dhbw.png  used on input line 169.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
- [29] (./sections/00_abkuerzungen.tex) (./sections/KI_Uebersicht.tex
+ [28] (./sections/00_abkuerzungen.tex) (./sections/KI_Uebersicht.tex
 Underfull \hbox (badness 10000) in paragraph at lines 12--13
 []|\T1/lmr/m/n/12 (+20) Gliederung und
  []
@@ -1594,12 +1583,12 @@ File: logos/logo_dhbw.png Graphic file (type png)
 <use logos/logo_dhbw.png>
 Package pdftex.def Info: logos/logo_dhbw.png  used on input line 173.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
- [30]
+ [29]
 File: logos/logo_dhbw.png Graphic file (type png)
 <use logos/logo_dhbw.png>
 Package pdftex.def Info: logos/logo_dhbw.png  used on input line 173.
 (pdftex.def)             Requested size: 85.08328pt x 35.56593pt.
- [31
+ [30
 pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
@@ -1614,18 +1603,18 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 27623 strings out of 467533
- 531114 string characters out of 5422139
- 1560688 words of memory out of 5000000
- 55848 multiletter control sequences out of 15000+600000
- 714848 words of font info for 166 fonts, out of 8000000 for 9000
+ 27600 strings out of 467533
+ 530883 string characters out of 5422139
+ 1560465 words of memory out of 5000000
+ 55836 multiletter control sequences out of 15000+600000
+ 714854 words of font info for 166 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  108i,23n,107p,11260b,3219s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt12.pfb>
-Output written on main.pdf (34 pages, 1017310 bytes).
+Output written on main.pdf (33 pages, 1014391 bytes).
 PDF statistics:
- 754 PDF objects out of 1000 (max. 8388607)
- 652 compressed objects within 7 object streams
- 168 named destinations out of 1000 (max. 500000)
- 48579 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 719 PDF objects out of 1000 (max. 8388607)
+ 618 compressed objects within 7 object streams
+ 157 named destinations out of 1000 (max. 500000)
+ 48563 words of extra memory for PDF output out of 51595 (max. 10000000)
 
