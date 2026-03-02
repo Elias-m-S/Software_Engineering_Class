@@ -2,47 +2,47 @@
 \contentsline {section}{\numberline {1}Einleitung}{1}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Scope}{1}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Ziel des Dokuments}{1}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}Abgrenzung Normal Operation vs.\ Emergency Stop}{1}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Dokument-Übersicht}{2}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.3}Abgrenzung Normal Operation vs.\ Emergency Stop}{2}{subsection.1.3}%
 \contentsline {section}{\numberline {2}Gesamtarchitektur des Systems}{2}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Systemkontext}{2}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Logische Systemstruktur (Component Overview)}{3}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Subsystem-Verantwortlichkeiten und Klassendiagramme}{4}{subsection.2.3}%
-\contentsline {subsubsection}{\numberline {2.3.1}Jetson Nano – Klassen}{5}{subsubsection.2.3.1}%
-\contentsline {subsubsection}{\numberline {2.3.2}Arduino Mega Master – Klassen}{6}{subsubsection.2.3.2}%
-\contentsline {subsubsection}{\numberline {2.3.3}Datenklasse: CanMessage}{6}{subsubsection.2.3.3}%
-\contentsline {subsubsection}{\numberline {2.3.4}Arduino Mega Slave – Klassen}{7}{subsubsection.2.3.4}%
-\contentsline {section}{\numberline {3}Verteilungsarchitektur (Deployment)}{8}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Komponentenverteilung}{8}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Kommunikationskanäle}{9}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Rationale der Verteilung}{9}{subsection.3.3}%
-\contentsline {section}{\numberline {4}Dynamisches Verhalten des Systems}{10}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Global Software Control: Auslösung durch Safety-Zone}{10}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Boundary Condition: Systemstart (Startup)}{11}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Boundary Condition: Freigabe nach Emergency Stop (Release)}{12}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Boundary Condition: Freigabe abgelehnt (Release Rejected)}{13}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Boundary Condition: Fehlerbehandlung (Error)}{14}{subsection.4.5}%
-\contentsline {subsection}{\numberline {4.6}Boundary Condition: Shutdown}{15}{subsection.4.6}%
-\contentsline {section}{\numberline {5}Detailed Design: Emergency Stop}{15}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Klassendesign}{16}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Attribute}{16}{subsubsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.2}Öffentliche Operationen (Public Interface)}{17}{subsubsection.5.1.2}%
-\contentsline {subsubsection}{\numberline {5.1.3}Private Methoden}{17}{subsubsection.5.1.3}%
-\contentsline {subsubsection}{\numberline {5.1.4}Enum: EStopState}{18}{subsubsection.5.1.4}%
-\contentsline {subsubsection}{\numberline {5.1.5}Pre-/Postconditions (Design by Contract)}{18}{subsubsection.5.1.5}%
-\contentsline {subsection}{\numberline {5.2}Interner Ablauf (Sequenzdiagramm)}{20}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Zustandsautomat (State Machine)}{21}{subsection.5.3}%
-\contentsline {subsubsection}{\numberline {5.3.1}Zustandsübergänge}{22}{subsubsection.5.3.1}%
-\contentsline {subsubsection}{\numberline {5.3.2}Besondere Eigenschaften}{22}{subsubsection.5.3.2}%
-\contentsline {subsubsection}{\numberline {5.3.3}Verhaltensmodellierung auf Methodenebene}{23}{subsubsection.5.3.3}%
-\contentsline {paragraph}{\nonumberline Aktivitätsbeschreibung: \texttt {checkReleaseGuard()}.}{23}{paragraph*.12}%
-\contentsline {section}{\numberline {6}Architektonische Entscheidungen}{24}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Sprachauswahl: C vs.\ C++}{24}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Verteilte Architektur}{24}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Fail-Safe-Prinzip}{25}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Klare Verantwortlichkeiten}{25}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}\acsu {CAN} als Kommunikationsprotokoll}{26}{subsection.6.5}%
-\contentsline {section}{\numberline {7}Traceability: Anforderung $\to $ Artefakt}{26}{section.7}%
-\contentsline {section}{\nonumberline Abbildungsverzeichnis}{28}{section*.15}%
-\contentsline {section}{Abkürzungsverzeichnis}{29}{section*.16}%
+\contentsline {subsection}{\numberline {2.1}Systemkontext}{3}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Logische Systemstruktur (Component Overview)}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Subsystem-Verantwortlichkeiten und Klassendiagramme}{5}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Jetson Nano – Klassen}{6}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Arduino Mega Master – Klassen}{7}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Datenklasse: CanMessage}{7}{subsubsection.2.3.3}%
+\contentsline {subsubsection}{\numberline {2.3.4}Arduino Mega Slave – Klassen}{8}{subsubsection.2.3.4}%
+\contentsline {section}{\numberline {3}Verteilungsarchitektur (Deployment)}{9}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Komponentenverteilung}{9}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Kommunikationskanäle}{10}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Rationale der Verteilung}{10}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Dynamisches Verhalten des Systems}{11}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Global Software Control: Auslösung durch Safety-Zone}{11}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Boundary Condition: Systemstart (Startup)}{12}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Boundary Condition: Freigabe nach Emergency Stop (Release)}{13}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Boundary Condition: Freigabe abgelehnt (Release Rejected)}{14}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Boundary Condition: Fehlerbehandlung (Error)}{15}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Boundary Condition: Shutdown}{16}{subsection.4.6}%
+\contentsline {section}{\numberline {5}Detailed Design: Emergency Stop}{16}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Klassendesign}{17}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Attribute}{17}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Öffentliche Operationen (Public Interface)}{18}{subsubsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.3}Private Methoden}{18}{subsubsection.5.1.3}%
+\contentsline {subsubsection}{\numberline {5.1.4}Enum: EStopState}{19}{subsubsection.5.1.4}%
+\contentsline {subsubsection}{\numberline {5.1.5}Pre-/Postconditions (Design by Contract)}{19}{subsubsection.5.1.5}%
+\contentsline {subsection}{\numberline {5.2}Interner Ablauf (Sequenzdiagramm)}{21}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Zustandsautomat (State Machine)}{22}{subsection.5.3}%
+\contentsline {subsubsection}{\numberline {5.3.1}Zustandsübergänge}{23}{subsubsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.2}Besondere Eigenschaften}{23}{subsubsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.3}Verhaltensmodellierung auf Methodenebene}{24}{subsubsection.5.3.3}%
+\contentsline {paragraph}{\nonumberline Aktivitätsbeschreibung: \texttt {checkReleaseGuard()}.}{24}{paragraph*.11}%
+\contentsline {section}{\numberline {6}Architektonische Entscheidungen}{25}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Sprachauswahl: C vs.\ C++}{25}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Verteilte Architektur}{25}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Fail-Safe-Prinzip}{26}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Klare Verantwortlichkeiten}{26}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}\acsu {CAN} als Kommunikationsprotokoll}{27}{subsection.6.5}%
+\contentsline {section}{\numberline {7}Traceability: Anforderung $\to $ Artefakt}{28}{section.7}%
+\contentsline {section}{\nonumberline Abbildungsverzeichnis}{29}{table.2}%
+\contentsline {section}{Abkürzungsverzeichnis}{30}{table.2}%
+\contentsline {section}{\nonumberline Literaturverzeichnis}{30}{section*.17}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

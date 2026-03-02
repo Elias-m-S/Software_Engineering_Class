@@ -34,10 +34,12 @@ Das \ac{SDD} richtet sich an Entwicklerinnen und Entwickler, die
   \item das Emergency-Stop-Modul detailliert implementieren wollen.
 \end{enumerate}
 
+\newpage
 \subsection{Abgrenzung Normal Operation vs.\ Emergency Stop}
 \label{sec:abgrenzung}
 
-Das System unterscheidet zwei Betriebsmodi:
+Das System unterscheidet zwei Betriebsmodi (vgl.\ Abbildung~\ref{fig:zone_definition}):
+
 
 \begin{description}
   \item[Normal Operation (Gelb/Grün)]
@@ -52,21 +54,11 @@ Das System unterscheidet zwei Betriebsmodi:
     (Guard-Bedingung: Safety-Zone nicht mehr aktiv, kein Fehler).
 \end{description}
 
-\subsection{Dokument-Übersicht}
-\label{sec:uebersicht}
 
-\begin{center}
-\begin{tabular}{ll}
-  \toprule
-  \textbf{Abschnitt} & \textbf{Inhalt} \\
-  \midrule
-  \S\,\ref{sec:gesamtarchitektur} & Systemkontext, Subsystem-Zerlegung, Klassendiagramme \\
-  \S\,\ref{sec:deployment}        & Hardware/Software-Mapping (Deployment) \\
-  \S\,\ref{sec:dynamik}           & Global Software Control + Boundary Conditions (Sequenzen) \\
-  \S\,\ref{sec:detaileddesign}    & Detailed Design Emergency Stop \\
-  \S\,\ref{sec:entscheidungen}    & Architektonische Entscheidungen (inkl.\ Sprachauswahl) \\
-  \S\,\ref{sec:traceability}      & Traceability: Anforderung $\to$ Artefakt \\
-  \S\,\ref{sec:naechste_schritte} & Nächste Schritte / offene Punkte \\
-  \bottomrule
-\end{tabular}
-\end{center}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.95\textwidth]{Zone_Definition.png}
+  \caption{Zone Definition (Ref. Aufgabenstellung \cite{PPT_SE_Operation_Zones})}
+  \label{fig:zone_definition}
+\end{figure}
+

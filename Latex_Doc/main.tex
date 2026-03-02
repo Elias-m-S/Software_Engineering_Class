@@ -16,6 +16,19 @@
 	bibliography = totoc
 ]{scrartcl}
 
+
+\usepackage[
+    backend=biber,      % Empfohlener Backend-Prozessor
+    style=numeric,      % Zitierstil (z.B. numeric, alphabetic oder authoryear)
+    sorting=none        % Quellen in der Reihenfolge des Erscheinens (optional)
+]{biblatex}
+
+% Hier gibst du den Namen deiner .bib-Datei an
+\addbibresource{Literatur.bib}
+
+
+
+
 % --- Kodierung & Sprache ---
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -109,13 +122,13 @@
     Modul:       & Software Engineering (Program Design) \\
     Hochschule:  & DHBW Ravensburg, Campus Friedrichshafen \\
     Studiengang: & Embedded Systems \\
-    Betreuer:    & Daniel Stimac \\
+    Dozent:    & Daniel Stimac \\
   \end{tabular}
 
   \vfill
 
   % Autoren
-  {\large\bfseries Die Drei Muskeltiere}\\[0.6cm]
+  {\large\bfseries Drei Muske(l)tiere}\\[0.6cm]
   \begin{tabular}{ll}
     {Dominik Borowski} & {7373896} \\
     {Niklas Grünewald} & {5474255} \\
@@ -146,12 +159,15 @@
 \input{sections/07_traceability}
 % \input{sections/08_naechste_schritte}
 
+
 % --- Abbildungsverzeichnis ---
 \newpage
 \listoffigures
 
+
 % --- Abkürzungsverzeichnis ---
 \newpage
 \input{sections/00_abkuerzungen}
-
+\printbibliography[title={Literaturverzeichnis}]
+\input{sections/KI_Uebersicht.tex}
 \end{document}

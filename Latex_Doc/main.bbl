@@ -1,0 +1,79 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{PPT_SE_Operation_Zones}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=dfb31df5139060189e79142a0174cb08}{%
+           family={Stimac},
+           familyi={S\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{dfb31df5139060189e79142a0174cb08}
+      \strng{fullhash}{dfb31df5139060189e79142a0174cb08}
+      \strng{fullhashraw}{dfb31df5139060189e79142a0174cb08}
+      \strng{bibnamehash}{dfb31df5139060189e79142a0174cb08}
+      \strng{authorbibnamehash}{dfb31df5139060189e79142a0174cb08}
+      \strng{authornamehash}{dfb31df5139060189e79142a0174cb08}
+      \strng{authorfullhash}{dfb31df5139060189e79142a0174cb08}
+      \strng{authorfullhashraw}{dfb31df5139060189e79142a0174cb08}
+      \field{extraname}{1}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Hardware Architektur des ZF-Immotrucks}
+      \field{title}{Software Engineering Program Design}
+      \field{year}{2026}
+      \field{pages}{10}
+      \range{pages}{1}
+    \endentry
+    \entry{PPT_SE_HW_Arch}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=dfb31df5139060189e79142a0174cb08}{%
+           family={Stimac},
+           familyi={S\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+      }
+      \strng{namehash}{dfb31df5139060189e79142a0174cb08}
+      \strng{fullhash}{dfb31df5139060189e79142a0174cb08}
+      \strng{fullhashraw}{dfb31df5139060189e79142a0174cb08}
+      \strng{bibnamehash}{dfb31df5139060189e79142a0174cb08}
+      \strng{authorbibnamehash}{dfb31df5139060189e79142a0174cb08}
+      \strng{authornamehash}{dfb31df5139060189e79142a0174cb08}
+      \strng{authorfullhash}{dfb31df5139060189e79142a0174cb08}
+      \strng{authorfullhashraw}{dfb31df5139060189e79142a0174cb08}
+      \field{extraname}{2}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Hardware Architektur des ZF-Immotrucks}
+      \field{title}{Software Engineering Program Design}
+      \field{year}{2026}
+      \field{pages}{8}
+      \range{pages}{1}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

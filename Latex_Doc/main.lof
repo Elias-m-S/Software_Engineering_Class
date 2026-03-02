@@ -1,17 +1,19 @@
 \babel@toc {ngerman}{}\relax 
-\contentsline {figure}{\numberline {1}{\ignorespaces Kontextdiagramm – Systemgrenzen und externe Akteure}}{3}{figure.1}%
-\contentsline {figure}{\numberline {2}{\ignorespaces Komponentenübersicht – logische Systemstruktur}}{4}{figure.2}%
-\contentsline {figure}{\numberline {3}{\ignorespaces Klassendiagramm Jetson Nano: Autonomie-/Wahrnehmungs-Subsystem}}{5}{figure.3}%
-\contentsline {figure}{\numberline {4}{\ignorespaces Klassendiagramm Arduino Mega Master: Kommunikations-Gateway}}{6}{figure.4}%
-\contentsline {figure}{\numberline {5}{\ignorespaces Klassendiagramm Arduino Mega Slave: Sicherheits- und Antriebssubsystem}}{7}{figure.5}%
-\contentsline {figure}{\numberline {6}{\ignorespaces Deployment-Diagramm – Hardware/Software-Mapping}}{8}{figure.6}%
-\contentsline {figure}{\numberline {7}{\ignorespaces Sequenzdiagramm: Auslösung des Emergency Stop durch Safety-Zone (Rot)}}{10}{figure.7}%
-\contentsline {figure}{\numberline {8}{\ignorespaces Sequenzdiagramm: Startup-Verhalten}}{11}{figure.8}%
-\contentsline {figure}{\numberline {9}{\ignorespaces Sequenzdiagramm: Manuelle Freigabe nach Emergency Stop}}{12}{figure.9}%
-\contentsline {figure}{\numberline {10}{\ignorespaces Sequenzdiagramm: Freigabe abgelehnt (Guard nicht erfüllt)}}{13}{figure.10}%
-\contentsline {figure}{\numberline {11}{\ignorespaces Sequenzdiagramm: Fehlerbehandlung (fehlende Sensordaten)}}{14}{figure.11}%
-\contentsline {figure}{\numberline {12}{\ignorespaces Sequenzdiagramm: Kontrollierter Shutdown}}{15}{figure.12}%
-\contentsline {figure}{\numberline {13}{\ignorespaces Detailliertes Klassendiagramm – EmergencyStop inkl.\ private Methoden}}{16}{figure.13}%
-\contentsline {figure}{\numberline {14}{\ignorespaces Internes Sequenzdiagramm – Ablauf innerhalb von EmergencyStop}}{20}{figure.14}%
-\contentsline {figure}{\numberline {15}{\ignorespaces Zustandsautomat – vollständiges Verhalten von EmergencyStop}}{21}{figure.15}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Zone Definition (Ref. Aufgabenstellung \blx@tocontentsinit {0}\cite {PPT_SE_Operation_Zones})}}{2}{figure.1}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Hardware Architektur des Systems \blx@tocontentsinit {0}\cite {PPT_SE_HW_Arch}}}{3}{figure.2}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Kontextdiagramm – Systemgrenzen und externe Akteure}}{4}{figure.3}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Komponentenübersicht – logische Systemstruktur}}{5}{figure.4}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Klassendiagramm Jetson Nano: Autonomie-/Wahrnehmungs-Subsystem}}{6}{figure.5}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Klassendiagramm Arduino Mega Master: Kommunikations-Gateway}}{7}{figure.6}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Klassendiagramm Arduino Mega Slave: Sicherheits- und Antriebssubsystem}}{8}{figure.7}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Deployment-Diagramm – Hardware/Software-Mapping}}{9}{figure.8}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Sequenzdiagramm: Auslösung des Emergency Stop durch Safety-Zone (Rot)}}{11}{figure.9}%
+\contentsline {figure}{\numberline {10}{\ignorespaces Sequenzdiagramm: Startup-Verhalten}}{12}{figure.10}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Sequenzdiagramm: Manuelle Freigabe nach Emergency Stop}}{13}{figure.11}%
+\contentsline {figure}{\numberline {12}{\ignorespaces Sequenzdiagramm: Freigabe abgelehnt (Guard nicht erfüllt)}}{14}{figure.12}%
+\contentsline {figure}{\numberline {13}{\ignorespaces Sequenzdiagramm: Fehlerbehandlung (fehlende Sensordaten)}}{15}{figure.13}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Sequenzdiagramm: Kontrollierter Shutdown}}{16}{figure.14}%
+\contentsline {figure}{\numberline {15}{\ignorespaces Detailliertes Klassendiagramm – EmergencyStop inkl.\ private Methoden}}{17}{figure.15}%
+\contentsline {figure}{\numberline {16}{\ignorespaces Internes Sequenzdiagramm – Ablauf innerhalb von EmergencyStop}}{21}{figure.16}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Zustandsautomat – vollständiges Verhalten von EmergencyStop}}{22}{figure.17}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
