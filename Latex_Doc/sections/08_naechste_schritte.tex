@@ -33,15 +33,15 @@ priorisiert nach Relevanz für die Bewertung.
     \todo{Sprachauswahl-Begründung mit Team abstimmen und finalisieren.}
 
   \item \textbf{[P2 – Architektur]}
-    \textbf{CAN-Datenklasse ausdetaillieren.} \\
-    Die Klasse für CAN-Pakete (Struktur: ID, Payload, Timestamp) in einem
+    \textbf{\ac{CAN}-Datenklasse ausdetaillieren.} \\
+    Die Klasse für \ac{CAN}-Pakete (Struktur: ID, Payload, Timestamp) in einem
     eigenen Klassendiagramm modellieren und in Abschnitt~\ref{sec:klassendiagramme}
     einbinden.
-    \todo{CAN-Datenklasse modellieren und Diagramm einbinden.}
+    \todo{\ac{CAN}-Datenklasse modellieren und Diagramm einbinden.}
 
   \item \textbf{[P3 – Qualität]}
     \textbf{Latenzzahlen ergänzen.} \\
-    Typische CAN-Zykluszeit und LAN-Latenz aus Systemtests eintragen
+    Typische \ac{CAN}-Zykluszeit und \ac{LAN}-Latenz aus Systemtests eintragen
     (Abschnitt~\ref{sec:deployment}).
     \todo{Messwerte aus Systemtest nachtragen.}
 
@@ -66,9 +66,9 @@ bzw.\ der Aufgabenstellung validiert werden:
 \begin{itemize}
   \item \assumption{Emergency Stop läuft auf dem Arduino Mega Slave
         (nahe DriveControlUnit). Erste Vermutung laut Mitschrieb; zu bestätigen.}
-  \item \assumption{CAN-Zykluszeit $< 5\,\text{ms}$; zu messen.}
+  \item \assumption{\ac{CAN}-Zykluszeit $< 5\,\text{ms}$; zu messen.}
   \item \assumption{Distanzschwelle für Rot-Zone: $\leq 15\,\mathrm{cm}$.}
-  \item \assumption{CAN-Datenklasse kapselt ID, Payload und Timestamp.}
+  \item \assumption{\ac{CAN}-Datenklasse kapselt ID, Payload und Timestamp.}
   \item \assumption{Logger schreibt auf seriellen Ausgang des Slave-Arduinos;
         kein persistenter Speicher.}
 \end{itemize}

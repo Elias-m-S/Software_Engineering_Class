@@ -6,7 +6,7 @@
 
 Dieses Dokument beschreibt das \textbf{Program Design} des verteilten Not-Halt-Systems
 einer autonomen Fahrzeugplattform (Truck).
-Es hat den Charakter eines \emph{System Design Documents} (SDD) und dokumentiert
+Es hat den Charakter eines \ac{SDD} und dokumentiert
 die Softwarearchitektur sowie das detaillierte Design des Teilsystems \textbf{Emergency Stop}.
 
 \subsection{Scope}
@@ -16,7 +16,7 @@ die Softwarearchitektur sowie das detaillierte Design des Teilsystems \textbf{Em
   \item \textbf{In Scope:} Software im Truck (Jetson Nano, Arduino Mega Master,
         Arduino Mega Slave), Architektur, Kommunikationsschnittstellen,
         Emergency-Stop-Logik, Boundary Conditions.
-  \item \textbf{Out of Scope:} PC-Anwendung, ROS-Integration, WLAN-Kommunikation,
+  \item \textbf{Out of Scope:} PC-Anwendung, \ac{ROS}-Integration, \ac{WLAN}-Kommunikation,
         Details der Sensor-Fusion (wird als Blackbox behandelt).
   \item \textbf{Vereinfachungen:}
         LiDAR liefert direkt die Distanz zum nächstliegenden Objekt;
@@ -26,7 +26,7 @@ die Softwarearchitektur sowie das detaillierte Design des Teilsystems \textbf{Em
 \subsection{Ziel des Dokuments}
 \label{sec:ziel}
 
-Das SDD richtet sich an Entwicklerinnen und Entwickler, die
+Das \ac{SDD} richtet sich an Entwicklerinnen und Entwickler, die
 \begin{enumerate}
   \item die Gesamtarchitektur und die Subsystem-Verantwortlichkeiten verstehen,
   \item das Deployment auf den Hardwareeinheiten nachvollziehen,
@@ -41,9 +41,9 @@ Das System unterscheidet zwei Betriebsmodi:
 
 \begin{description}
   \item[Normal Operation (Gelb/Grün)]
-    Der \emph{TTC-Observer} (Time-To-Collision) überwacht die Umgebung und erlaubt
+    Der \emph{\ac{TTC}-Observer} überwacht die Umgebung und erlaubt
     eine automatische Reaktion auf Hindernisse.  Der Fahrvorgang wird angepasst,
-    das Fahrzeug kann aber weiterfahren.  TTC ist \textbf{kein} Bestandteil des
+    das Fahrzeug kann aber weiterfahren.  \ac{TTC} ist \textbf{kein} Bestandteil des
     Emergency-Stop-Moduls.
   \item[Safety Zone / Emergency Stop (Rot)]
     Sobald ein Objekt die rote Sicherheitszone unterschreitet, ein Pilzknopf gedrückt

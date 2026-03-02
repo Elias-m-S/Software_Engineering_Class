@@ -15,11 +15,11 @@
   & \textbf{C} & \textbf{C++} \\
   \midrule
   Vorteile
-    & Volle Kontrolle, minimaler Overhead, weit verbreitet auf Embedded \\
-    & OOP (Klassen, Vererbung), STL, bessere Kapselung, Lesbarkeit \\
+    & Volle Kontrolle, minimaler Overhead 
+    & \ac{OOP} (Klassen, Vererbung), Lesbarkeit \\
   Nachteile
-    & Keine Objektorientierung, schlechte Kapselung, fehleranfälliger Code \\
-    & Leicht erhöhter Code-Footprint, RTTI/Exceptions ggf.\ deaktivieren \\
+    & Keine Objektorientierung, schlechte Kapselung, fehleranfälliger Code
+    & Leicht erhöhter Code-Footprint \\
   Eignung Arduino Mega
     & Ja
     & Ja (Arduino-Framework basiert auf C++) \\
@@ -64,14 +64,14 @@ statt Mono-Architektur.
   \item \emph{Separation of Concerns:} Wahrnehmung (Jetson) und Sicherheit (Slave)
         sind physisch und softwareseitig getrennt.
   \item \emph{Determinismus:} Der Slave führt eine einfache Regellogik ohne
-        OS-Overhead aus.
+        \ac{OS}-Overhead aus.
   \item \emph{Fault Isolation:} Ein Absturz des Jetson deaktiviert den Emergency Stop
         nicht (Fail-Safe: Slave stoppt selbstständig bei ausbleibenden Daten).
 \end{itemize}
 
 \textbf{Alternative:} Alles auf dem Jetson Nano (Mono-Architektur).
 Wurde verworfen, da dies einen Single Point of Failure schafft und
-die Reaktionszeit durch OS-Scheduling unvorhersehbar wird.
+die Reaktionszeit durch \ac{OS}-Scheduling unvorhersehbar wird.
 
 % ------------------------------------------------------------
 \subsection{Fail-Safe-Prinzip}
@@ -97,7 +97,7 @@ Konkrete Umsetzungen:
   Komponente & Alleinige Verantwortlichkeit \\
   \midrule
   TTCObserver     & Normal Operation (Gelb/Grün); kein Zugriff auf Emergency Stop. \\
-  EmergencyStop   & Sicherheits-Zustände (Rot, Knopf, Taster); kein Zugriff auf TTC. \\
+  EmergencyStop   & Sicherheits-Zustände (Rot, Knopf, Taster); kein Zugriff auf \ac{TTC}. \\
   Logger          & Persistentes Logging; keine Entscheidungslogik. \\
   DriveControlUnit & Motorsteuerung; reagiert nur auf explizite Stop-/Go-Befehle. \\
   \bottomrule
@@ -105,11 +105,11 @@ Konkrete Umsetzungen:
 \end{center}
 
 % ------------------------------------------------------------
-\subsection{CAN als Kommunikationsprotokoll}
+\subsection{\acsu{CAN} als Kommunikationsprotokoll}
 \label{sec:entsch_can}
 
-\textbf{Rationale:} CAN ist für Automotive-Systeme optimiert, bietet priorisierungsbasierte
-Arbitrierung und eine hardware-gesicherte Fehlerkennung (CRC, ACK). Dies passt besser
-zu den Echtzeit-Anforderungen einer Sicherheitsfunktion als eine LAN-basierte Lösung.
+\textbf{Rationale:} \ac{CAN} ist für Automotive-Systeme optimiert, bietet priorisierungsbasierte
+Arbitrierung und eine hardware-gesicherte Fehlerkennung (\ac{CRC}, \ac{ACK}). Dies passt besser
+zu den Echtzeit-Anforderungen einer Sicherheitsfunktion als eine \ac{LAN}-basierte Lösung.
 
-\assumption{CAN-Zykluszeit $< 5\,\mathrm{ms}$; konkrete Werte aus Systemtest nachzutragen.}
+\assumption{\ac{CAN}-Zykluszeit $< 5\,\mathrm{ms}$; konkrete Werte aus Systemtest nachzutragen.}

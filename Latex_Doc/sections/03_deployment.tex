@@ -38,9 +38,9 @@ den physischen Hardwareeinheiten zu und macht die Kommunikationskanäle sichtbar
 \subsection{Kommunikationskanäle}
 
 \begin{itemize}
-  \item \textbf{LAN} (Ethernet): Jetson Nano $\leftrightarrow$ Arduino Mega Master. \\
+  \item \textbf{\ac{LAN}} (Ethernet): Jetson Nano $\leftrightarrow$ Arduino Mega Master. \\
     Überträgt Autonomie-Kommandos und Zonen-Updates vom Jetson zum Master.
-  \item \textbf{CAN-Bus}: Arduino Mega Master $\leftrightarrow$ Arduino Mega Slave. \\
+  \item \textbf{\ac{CAN}-Bus}: Arduino Mega Master $\leftrightarrow$ Arduino Mega Slave. \\
     Überträgt \texttt{CanMessage}-Objekte mit Zonenstatus, Emergency-Ereignissen
     und Steuerbefehlen (vgl.\ Abschnitt~\ref{sec:klassendiagramme}).
 \end{itemize}
@@ -56,15 +56,15 @@ neben der \texttt{DriveControlUnit} verfolgt folgende Ziele:
   \item \textbf{Isolation:} Ausfall des Jetson oder des Masters hat keinen direkten
         Einfluss auf die Fähigkeit, einen Stopp einzuleiten.
   \item \textbf{Determinismus:} Der Slave führt eine einfache Echtzeit-Logik aus;
-        kein OS-Overhead wie auf dem Jetson.
+        kein \ac{OS}-Overhead wie auf dem Jetson.
 \end{enumerate}
 
 \textbf{Typische Latenzen (Schätzwerte / Literaturangaben):}
 \begin{itemize}
-  \item \textbf{CAN-Bus} (1\,Mbit/s, 8-Byte-Frame):
+  \item \textbf{\ac{CAN}-Bus} (1\,Mbit/s, 8-Byte-Frame):
         Zykluszeit $\approx 0{,}13\,\mathrm{ms}$ pro Frame;
         Ende-zu-Ende-Latenz Master $\to$ Slave typisch $< 1\,\mathrm{ms}$.
-  \item \textbf{LAN} (100\,Mbit/s, UDP):
+  \item \textbf{\ac{LAN}} (100\,Mbit/s, \ac{UDP}):
         Latenz Jetson $\to$ Master typisch $< 2\,\mathrm{ms}$
         im lokalen Netz ohne Switches.
   \item \textbf{Gesamtlatenz} Sensorereignis $\to$ Stop-Befehl an Motor:

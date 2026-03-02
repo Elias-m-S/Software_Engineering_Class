@@ -50,24 +50,17 @@
 
 % --- Mathematik ---
 \usepackage{amsmath}
-\usepackage{amssymb}
 
 % --- Tabellen ---
 \usepackage{booktabs}
 \usepackage{array}
-\usepackage{tabularx}
 \usepackage{longtable}
 
 % --- Floats ---
 \usepackage{float}
 
-% --- Hilfs-Befehle aus Vorlage ---
-\newcounter{savepage}
-\newcommand*{\quelle}[1]{\footnotesize ~#1}
-\newcommand{\imgsmall}{0.25\textwidth}
-\newcommand{\imgmedium}{0.5\textwidth}
-\newcommand{\imgbig}{0.75\textwidth}
-\newcommand{\imglarge}{\textwidth}
+% --- Abkürzungsverzeichnis ---
+\usepackage[printonlyused, withpage]{acronym}
 
 % --- Eigene Hilfs-Kommandos (TODO / Annahmen) ---
 \newcommand{\todo}[1]{%
@@ -76,15 +69,7 @@
 \newcommand{\assumption}[1]{%
   \textcolor{assumpcolor}{\textit{[Annahme: #1]}}%
 }
-\newcommand{\todobox}[1]{%
-  \vspace{0.5em}%
-  \noindent\colorbox{yellow!30}{%
-    \parbox{\dimexpr\linewidth-2\fboxsep\relax}{%
-      \textcolor{todocolor}{\textbf{TODO:} #1}%
-    }%
-  }%
-  \vspace{0.5em}%
-}
+
 
 % =============================================================
 %  LAYOUT: Kopf- und Fußzeile (KOMA-Style wie SE-1-Vorlage)
@@ -147,10 +132,6 @@
 \newpage
 \tableofcontents
 
-% --- Abbildungsverzeichnis (via listof=totoc automatisch im TOC) ---
-\newpage
-\listoffigures
-
 % --- Arabische Seitennummerierung ab dem Inhalt ---
 \newpage
 \pagenumbering{arabic}
@@ -164,5 +145,13 @@
 \input{sections/06_entscheidungen}
 \input{sections/07_traceability}
 \input{sections/08_naechste_schritte}
+
+% --- Abbildungsverzeichnis ---
+\newpage
+\listoffigures
+
+% --- Abkürzungsverzeichnis ---
+\newpage
+\input{sections/00_abkuerzungen}
 
 \end{document}

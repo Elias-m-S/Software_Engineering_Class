@@ -27,14 +27,14 @@ folgender Ablauf ab:
   \item Der \texttt{SensorFusionAdapter} auf dem Jetson meldet ein Objekt in der
         Safety-Zone.
   \item Der \texttt{TTCObserver} erzeugt ein \texttt{ZoneUpdate(Safety)}-Ereignis.
-  \item Über LAN $\to$ \texttt{MasterLanLink} $\to$ \texttt{MasterCanGateway}
-        wird ein CAN-Paket generiert.
-  \item Das CAN-Paket wird vom \texttt{EnvironmentControl}-Interface auf dem Slave
+  \item Über \ac{LAN} $\to$ \texttt{MasterLanLink} $\to$ \texttt{MasterCanGateway}
+        wird ein \ac{CAN}-Paket generiert.
+  \item Das \ac{CAN}-Paket wird vom \texttt{EnvironmentControl}-Interface auf dem Slave
         empfangen und an \texttt{EmergencyStop} weitergegeben.
   \item Der Emergency Stop wechselt in den Zustand \texttt{EmergencyStop},
         sendet einen \textbf{Stop-Befehl} an die \texttt{DriveControlUnit}
         und löst einen \texttt{Logger.log(ERROR, "Safety zone triggered")}-Aufruf aus.
-  \item Die Status-LED wechselt auf Rot.
+  \item Die Status-\ac{LED} wechselt auf Rot.
 \end{enumerate}
 
 \textbf{Wichtig:} Das Fahrzeug bleibt blockiert, bis eine manuelle Freigabe
@@ -118,11 +118,11 @@ Der Zustand bleibt unverändert (\texttt{EmergencyStop}).
   \label{fig:seq_error}
 \end{figure}
 
-Fehlen gültige Sensordaten (z.\,B.\ LiDAR-Ausfall, CAN-Timeout),
+Fehlen gültige Sensordaten (z.\,B.\ LiDAR-Ausfall, \ac{CAN}-Timeout),
 greift das \textbf{Fail-Safe-Prinzip}:
 
 \begin{enumerate}
-  \item \texttt{EnvironmentControl} detektiert fehlende/ungültige CAN-Daten.
+  \item \texttt{EnvironmentControl} detektiert fehlende/ungültige \ac{CAN}-Daten.
   \item \texttt{EmergencyStop} erhält \texttt{ErrorDetected}-Ereignis.
   \item Zustandswechsel nach \texttt{SoftStop} (falls noch nicht gestoppt).
   \item \texttt{Logger.log(ERROR, "Sensor data missing – soft stop engaged")}.
