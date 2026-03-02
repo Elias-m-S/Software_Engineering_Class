@@ -1,36 +1,52 @@
 % =============================================================
 %  System Design Document – Emergency Stop System
-%  Kurs: Software Engineering (DHBW Ravensburg, Campus Friedrichshafen)
-%  Gruppe: Die Drei Muskeltiere
-%  Stand: März 2026
+%  Kurs: Software Engineering (Program Design)
+%  DHBW Ravensburg, Campus Friedrichshafen
+%  Gruppe: Die Drei Muskeltiere  |  Stand: März 2026
+%
+%  Stil basiert auf der LaTeX-Vorlage aus SE Semester 1.
 % =============================================================
-\documentclass[12pt, a4paper]{article}
 
-% --- Sprache & Kodierung ---
-\usepackage[T1]{fontenc}
+\documentclass[
+	pdftex,
+	a4paper,
+	12pt,
+	parskip = half,
+	listof  = totoc,
+	bibliography = totoc
+]{scrartcl}
+
+% --- Kodierung & Sprache ---
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage[ngerman]{babel}
 
-% --- Typografie & Layout ---
-\usepackage[
-  top=2.5cm, bottom=2.5cm,
-  left=3cm,  right=2.5cm
-]{geometry}
-\usepackage{microtype}
-\usepackage{parskip}
-\usepackage{lmodern}
+% --- Kopf-/Fußzeile (KOMA) ---
+\usepackage[headsepline, footsepline]{scrlayer-scrpage}
 
 % --- Grafiken ---
 \usepackage{graphicx}
-\usepackage{float}
-% Suchpfad für Diagramme (relativ zu diesem Dokument)
-\graphicspath{{../Diagram_SE/}}
+\graphicspath{{../Diagram_SE/}{logos/}}
 
-% --- Farben & Highlighting ---
+% --- Farben ---
 \usepackage{xcolor}
 \definecolor{todocolor}{RGB}{200,0,0}
 \definecolor{assumpcolor}{RGB}{0,100,180}
-\definecolor{tableheader}{RGB}{230,230,230}
+
+% --- Hyperref ---
+\usepackage{hyperref}
+\hypersetup{colorlinks, citecolor=black, filecolor=black, linkcolor=black, urlcolor=black}
+
+% --- Geometrie (identisch mit SE-1-Vorlage) ---
+\usepackage{geometry}
+\geometry{lmargin=25mm, rmargin=25mm, tmargin=35mm, bmargin=30mm,
+          headheight=40.96432pt}
+
+% --- Typografie ---
+\usepackage{setspace}
+\usepackage{lmodern}
+\usepackage{microtype}
+\addtokomafont{sectioning}{\rmfamily}
 
 % --- Mathematik ---
 \usepackage{amsmath}
@@ -39,40 +55,27 @@
 % --- Tabellen ---
 \usepackage{booktabs}
 \usepackage{array}
+\usepackage{tabularx}
 \usepackage{longtable}
 
-% --- Kopf-/Fußzeilen ---
-\usepackage{fancyhdr}
-\setlength{\headheight}{14pt}
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{\small System Design Document – Emergency Stop}
-\fancyhead[R]{\small Die Drei Muskeltiere}
-\fancyfoot[C]{\thepage}
-\renewcommand{\headrulewidth}{0.4pt}
+% --- Floats ---
+\usepackage{float}
 
-% --- Hyperlinks & PDF-Metadaten ---
-\usepackage[
-  colorlinks=true,
-  linkcolor=black,
-  urlcolor=blue,
-  citecolor=black,
-  pdftitle={System Design Document – Emergency Stop},
-  pdfauthor={Die Drei Muskeltiere},
-  pdfsubject={Software Engineering DHBW},
-  bookmarks=true
-]{hyperref}
+% --- Hilfs-Befehle aus Vorlage ---
+\newcounter{savepage}
+\newcommand*{\quelle}[1]{\footnotesize ~#1}
+\newcommand{\imgsmall}{0.25\textwidth}
+\newcommand{\imgmedium}{0.5\textwidth}
+\newcommand{\imgbig}{0.75\textwidth}
+\newcommand{\imglarge}{\textwidth}
 
-% --- Hilfs-Kommandos ---
-% Sichtbare TODO-Markierung im PDF
+% --- Eigene Hilfs-Kommandos (TODO / Annahmen) ---
 \newcommand{\todo}[1]{%
   \textcolor{todocolor}{\textbf{[TODO: #1]}}%
 }
-% Sichtbare Annahmen-Markierung
 \newcommand{\assumption}[1]{%
   \textcolor{assumpcolor}{\textit{[Annahme: #1]}}%
 }
-% Abschnittsweiser Platzhalter
 \newcommand{\todobox}[1]{%
   \vspace{0.5em}%
   \noindent\colorbox{yellow!30}{%
@@ -84,40 +87,73 @@
 }
 
 % =============================================================
+%  LAYOUT: Kopf- und Fußzeile (KOMA-Style wie SE-1-Vorlage)
+% =============================================================
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+\ihead{\includegraphics[height=1.25cm]{logos/logo_dhbw.png}}
+\ofoot{\pagemark}
+
+\makeatletter
+\renewcommand\@pnumwidth{2.4em}
+\renewcommand\@tocrmarg{2.4em}
+\makeatother
+
+% =============================================================
 \begin{document}
+
+\onehalfspacing
+
+% --- Seitennummerierung: Römisch für Titelseite / Verzeichnisse ---
+\pagenumbering{Roman}
 
 % --- Titelseite ---
 \begin{titlepage}
   \centering
-  \vspace*{2cm}
-  {\LARGE\bfseries System Design Document\par}
-  \vspace{0.5cm}
-  {\Large Emergency Stop System\par}
-  \vspace{0.5cm}
-  {\large Autonome Fahrzeugplattform – Truck\par}
-  \vspace{2cm}
-  \rule{\linewidth}{0.4pt}\\[0.5cm]
-  {\large
-    \textbf{Kurs:} Software Engineering\\[0.3cm]
-    \textbf{Gruppe:} Die Drei Muskeltiere\\[0.3cm]
-    \textbf{DHBW Ravensburg, Campus Friedrichshafen}\\[0.3cm]
-    \textbf{Datum:} März 2026\\[0.3cm]
-  }
-  \rule{\linewidth}{0.4pt}
-  \vfill
-  \begin{tabular}{ll}
-    \textbf{Bewertungsgewichtung:} & 75\,\% Architektur-Dokumentation\\
-                                   & 25\,\% Detailed Design\\
+
+  % DHBW-Logo
+  \includegraphics[width=4cm]{logos/logo_dhbw.png}\\[1.5cm]
+
+  % Titel
+  {\LARGE\bfseries System Design Document (SDD)}\\[0.5cm]
+  {\Large Nothaltesystem für einen autonom fahrenden Miniatur-LKW}\\[2cm]
+
+  % Projektinformationen
+  {\large\bfseries Projektinformationen}\\[0.4cm]
+  \begin{tabular}{p{4cm}l}
+    Modul:       & Software Engineering (Program Design) \\
+    Hochschule:  & DHBW Ravensburg, Campus Friedrichshafen \\
+    Studiengang: & Embedded Systems \\
+    Betreuer:    & Daniel Stimac \\
   \end{tabular}
+
+  \vfill
+
+  % Autoren
+  {\large\bfseries Die Drei Muskeltiere}\\[0.6cm]
+  \begin{tabular}{ll}
+    {Dominik Borowski} & {7373896} \\
+    {Niklas Grünewald} & {5474255} \\
+    {Elias Sehmsdorf} & {2369656} \\
+  \end{tabular}
+
+  \vfill
+
+  % Datum
+  {\large Friedrichshafen, März~2026}
 \end{titlepage}
 
 % --- Inhaltsverzeichnis ---
+\newpage
 \tableofcontents
-\clearpage
 
-% --- Abbildungsverzeichnis ---
+% --- Abbildungsverzeichnis (via listof=totoc automatisch im TOC) ---
+\newpage
 \listoffigures
-\clearpage
+
+% --- Arabische Seitennummerierung ab dem Inhalt ---
+\newpage
+\pagenumbering{arabic}
 
 % --- Kapitel ---
 \input{sections/01_einleitung}

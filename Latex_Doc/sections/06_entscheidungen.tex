@@ -32,28 +32,25 @@
 
 \textbf{Entscheidung: C++}
 
-Begründung:
-\begin{itemize}
-  \item Das Modell ist objektorientiert (Klassen, Interfaces, Enums).
-        C++ erlaubt eine direkte 1:1-Umsetzung des UML-Designs.
-  \item Arduino-Framework basiert nativ auf C++ (Klassen wie \texttt{HardwareSerial}
-        sind C++-Klassen).
-  \item Exceptions und RTTI werden \textbf{deaktiviert} (Arduino-Standard),
-        um Overhead zu vermeiden.
-  \item Die \texttt{Logger}-Klasse, \texttt{DriveControlUnit}-Abstraktion und
-        das Interface \texttt{EnvironmentControl} profitieren von OOP-Kapselung.
-\end{itemize}
+Das gesamte Systemdesign ist objektorientiert modelliert
+(Klassen, Interfaces, Enums); C++ erlaubt eine direkte 1:1-Abbildung
+dieses UML-Designs in Code ohne strukturelle Kompromisse.
+Da das Arduino-Framework selbst auf C++ basiert
+(z.\,B.\ \texttt{HardwareSerial}, \texttt{Stream} als C++-Klassen)
+und der Jetson Nano Linux mit vollem C++-Support ausführt,
+ist C++ auf allen drei Zielplattformen nativ verfügbar.
+Zur Minimierung des Speicher- und Laufzeit-Overheads werden
+Exceptions und RTTI im Compiler deaktiviert (\texttt{-fno-exceptions
+-fno-rtti}), was auf Arduino-Targets Standard ist.
+Insgesamt bietet C++ gegenüber reinem C eine deutlich bessere
+Kapselung (z.\,B.\ private Methoden in \texttt{EmergencyStop})
+bei vernachlässigbarem Mehraufwand.
 
-\textbf{Alternativen:}
-\begin{itemize}
-  \item \emph{Reines C} wäre möglich, würde aber alle Klassen als Structs mit
-        Funktionszeigern erfordern – erheblich mehr Boilerplate ohne Mehrwert.
-  \item \emph{Rust} wäre sicherheitstechnisch attraktiv, ist aber auf Arduino-
-        Targets nicht offiziell unterstützt.
-\end{itemize}
-
-\todobox{Kurze Begründung der Sprachauswahl (1--2 Sätze) ins finale Dokument
-aufnehmen und mit dem Team abstimmen.}
+\textbf{Verworfene Alternativen:}
+Reines C würde alle Klassen als Structs mit Funktionszeigern
+erfordern – erheblich mehr Boilerplate ohne architektonischen Mehrwert.
+Rust wäre sicherheitstechnisch attraktiv, ist aber auf den
+verwendeten Arduino-Targets nicht offiziell unterstützt.
 
 % ------------------------------------------------------------
 \subsection{Verteilte Architektur}

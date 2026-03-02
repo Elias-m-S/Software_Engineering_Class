@@ -103,11 +103,36 @@ Hauptverantwortlichkeiten des Master-Subsystems:
     Empfängt Befehle vom Jetson über LAN und leitet sie auf den CAN-Bus weiter.
   \item[\texttt{MasterCanGateway}]
     Kapselt CAN-Kommunikation; wandelt LAN-Nachrichten in CAN-Pakete um.
-    \assumption{CAN-Datenklasse als eigene Klasse modelliert (OOP-Anforderung).}
+    Nutzt intern die Klasse \texttt{CanMessage} (siehe unten).
   \item[\texttt{HmiService}]
     Verarbeitet Signale des Pilzknopfs (Emergency-Button) und des Fronttasters;
     erzeugt entsprechende CAN-Ereignisse.
 \end{description}
+
+\subsubsection{Datenklasse: CanMessage}
+
+Für die CAN-Kommunikation wird gemäß OOP-Anforderung eine eigene
+Datenklasse \texttt{CanMessage} eingesetzt, die auf Master- und
+Slave-Seite identisch verwendet wird:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{>{{\ttfamily}}p{3.5cm} >{{\ttfamily}}p{2.8cm} p{7cm}}
+  \toprule
+  \normalfont\textbf{Attribut} & \normalfont\textbf{Typ} & \normalfont\textbf{Bedeutung} \\
+  \midrule
+  messageId   & uint16\_t  & CAN-Identifier; kodiert den Nachrichtentyp
+                             (z.\,B.\ ZoneUpdate, EmergencyEvent). \\
+  payload     & uint8\_t[8] & Nutzdaten (bis zu 8\,Byte, CAN-Standard). \\
+  payloadLen  & uint8\_t   & Anzahl gültiger Payload-Bytes. \\
+  timestamp   & uint32\_t  & Zeitstempel in Millisekunden seit Systemstart. \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\texttt{CanMessage} ist eine reine Datenklasse (\emph{Plain Old Data})
+ohne eigene Logik; sie trennt die Transportschicht von der
+Anwendungsschicht und ermöglicht ein einheitliches Logging.
 
 \subsubsection{Arduino Mega Slave – Klassen}
 

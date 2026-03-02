@@ -108,8 +108,52 @@ um die Kapselung der Zustandslogik zu gewährleisten.
 \end{tabular}
 \end{center}
 
-\todobox{Vollständige Liste aller privaten Methoden mit Vor-/Nachbedingungen
-(Design by Contract) noch auszuarbeiten.}
+\subsubsection{Pre-/Postconditions (Design by Contract)}
+
+Die folgende Tabelle spezifiziert Vor- und Nachbedingungen aller privaten Methoden
+gemäß Design by Contract.
+
+\renewcommand{\arraystretch}{1.35}
+\begin{longtable}{>{{\ttfamily}}p{4.2cm} p{4.8cm} p{4.8cm}}
+  \toprule
+  \normalfont\textbf{Methode} & \normalfont\textbf{Precondition} & \normalfont\textbf{Postcondition} \\
+  \midrule
+  \endhead
+  triggerEmergencyStop()
+    & \texttt{currentState \!= HardStop}
+    & \texttt{currentState == EmergencyStop};
+      \texttt{DriveControlUnit} gestoppt;
+      Ereignis geloggt. \\
+  triggerSoftStop()
+    & \texttt{currentState \!= HardStop}
+    & \texttt{currentState == SoftStop};
+      \texttt{DriveControlUnit} gestoppt;
+      Ereignis geloggt. \\
+  stopDrive()
+    & \texttt{driveRef \!= nullptr}
+    & Stop-Befehl an \texttt{DriveControlUnit} gesendet;
+      Rückgabewert bestätigt. \\
+  enableDrive()
+    & \texttt{currentState == Normal};
+      \texttt{driveRef \!= nullptr}
+    & Freigabe-Befehl gesendet;
+      \texttt{DriveControlUnit} aktiv. \\
+  checkReleaseGuard()
+    & Keine (pure Leseoperation)
+    & Gibt \texttt{true} gdw.\ \texttt{!safetyZoneActive \&\& !errorFlag};
+      kein Seiteneffekt. \\
+  logEvent(level, msg)
+    & \texttt{loggerRef \!= nullptr};
+      \texttt{msg} nicht leer
+    & Eintrag mit Zeitstempel und Level an Logger
+      übergeben. \\
+  transitionTo(state)
+    & \texttt{state} ist gültiger \texttt{EStopState};
+      Übergang laut State Machine erlaubt
+    & \texttt{currentState == state};
+      Übergang via \texttt{logEvent(INFO, ...)} protokolliert. \\
+  \bottomrule
+\end{longtable}
 
 % ------------------------------------------------------------
 \subsection{Interner Ablauf (Sequenzdiagramm)}
@@ -187,6 +231,36 @@ vollständige Verhalten von \texttt{EmergencyStop}.
   \item \textbf{ShutdownRequest} führt immer zu \texttt{SoftStop}.
 \end{itemize}
 
-\todobox{Activity-Diagramme für die wichtigsten privaten Methoden
-(\texttt{checkReleaseGuard}, \texttt{triggerEmergencyStop}) ausarbeiten
-oder begründen, warum die State-Machine hinreichend ist.}
+\subsubsection{Verhaltensmodellierung auf Methodenebene}
+
+Laut Aufgabenstellung ist für jede Methode entweder ein Activity-Diagramm
+oder eine State Machine zu erstellen.
+Für \texttt{EmergencyStop} gilt folgende Begründung:
+
+\begin{itemize}
+  \item Der \textbf{Zustandsautomat} (Abschnitt~\ref{sec:estop_statemachine})
+    modelliert das vollständige Verhalten der Klasse auf Ebene der
+    öffentlichen Events und Transitionen. Alle möglichen Systemzustände
+    und Übergangsbedingungen sind dort vollständig spezifiziert.
+  \item Die privaten Methoden sind \emph{zustandslos} und haben keine
+    Verzweigungslogik, die über die State Machine hinausgeht –
+    mit einer Ausnahme: \texttt{checkReleaseGuard()}.
+\end{itemize}
+
+\paragraph{Aktivitätsbeschreibung: \texttt{checkReleaseGuard()}.}
+Diese Methode ist die einzige mit nicht-trivialer Entscheidungslogik:
+
+\begin{enumerate}
+  \item Lese \texttt{safetyZoneActive}.
+  \item Falls \texttt{true}: Rückgabe \texttt{false} (Guard nicht erfüllt).
+  \item Lese \texttt{errorFlag}.
+  \item Falls \texttt{true}: Rückgabe \texttt{false} (Guard nicht erfüllt).
+  \item Beide Bedingungen \texttt{false}: Rückgabe \texttt{true} (Freigabe möglich).
+\end{enumerate}
+
+Die Logik entspricht einem einfachen booleschen Ausdruck
+$\neg\,\mathit{safetyZoneActive} \wedge \neg\,\mathit{errorFlag}$
+ohne Seiteneffekte. Ein separates Activity-Diagramm für die
+übrigen Methoden entfällt, da diese direkte 1:1-Delegationen
+(\texttt{stopDrive}, \texttt{logEvent}) oder Zustandsassignments
+(\texttt{transitionTo}) ohne eigene Kontrollstruktur sind.
