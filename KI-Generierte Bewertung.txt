@@ -1,0 +1,39 @@
+Gemini hat gesagt
+Hallo! Eure Ausarbeitung für das System Design Document (SDD) (main.pdf) sieht auf den ersten Blick hervorragend strukturiert aus. Das Inhaltsverzeichnis zeigt, dass ihr sehr gezielt auf die Anforderungen aus der Aufgabenstellung und dem Mitschrieb eingegangen seid.
+
+Hier ist eine detaillierte Überprüfung und Abgleich eurer Struktur mit den bereitgestellten Materialien, aufgeteilt in Stärken, potenzielle Lücken und Verbesserungsvorschläge.
+
+1. Hervorragend umgesetzte Anforderungen (Stärken)
+Eure Gliederung deckt wesentliche Kernanforderungen bereits methodisch exzellent ab:
+
+Klare Trennung der Scopes: Die strikte funktionale Trennung von Normal Operation (TTC-Observer) und Emergency Stop (Safety-Zone) ist in eurem Systemkontext etabliert. Dies setzt die Vorgabe aus der Vorlesung, wonach TTC nicht zum Emergency Stop gehört, perfekt um.
+
+Punkteverteilung beachtet: Die Aufgabenstellung gewichtet die Architekturdokumentation mit 75% und das Detailed Design mit 25%. Diese Gewichtung spiegelt sich angemessen in eurer umfangreichen Architekturdokumentation (Kapitel 2-4) und dem tiefen "Detailed Design" (Kapitel 5) wider.
+
+Architektur- und Technologieentscheidungen: Die geforderte Begründung der Sprachauswahl (C vs. C++) wurde als eigener Abschnitt (6.1) dokumentiert. Dies war eine explizite Grundsatzentscheidung laut Aufgabenstellung.
+
+CAN-Datenklasse: Die Modellierung der CAN-Kommunikation über eine eigene OOP-Datenklasse (CanMessage) wurde in Kapitel 2.3.3 umgesetzt. Dies entspricht genau dem Designhinweis aus der Vorlesung.
+
+Logging als Querschnittsfunktion: Dass das Logging-Modul separat konzipiert wurde und von jeder E-Stop-Zustandsänderung aufgerufen wird, greift die "Nice-to-have"-Hinweise des Dozenten bezüglich Error-Logging auf. Der Hinweis, dass keine Sensordaten verarbeitet werden und stattdessen ein Stopp samt Logging erfolgt, wurde ebenfalls bedacht.
+
+Vollständigkeit der Boundary Conditions: Ihr habt fünf Sequenzdiagramme entworfen, die Systemstart, Systemstopp, Fehlerbehandlung und Freigaben umfassen. Damit übererfüllt ihr die Anforderung, mindestens ein Start-up-, Shutdown- und Fehler-Szenario zu modellieren.
+
+2. Mögliche Lücken & Kritische Prüfpunkte (To-Dos vor der Abgabe)
+Bitte prüft die folgenden Punkte in eurem fertigen PDF und dem Enterprise Architect Modell genau, da sie in der offiziellen Aufgabenbeschreibung explizit als Bewertungskriterien genannt werden und oft übersehen werden:
+
+PC-Anwendung im Kontextdiagramm: Die Aufgabenstellung fordert für das Kontextdiagramm: "modeling the overall truck system with system boundaries (e.g. connection to HW / PC application)". Obwohl ihr die PC-Applikation formal als "Out of Scope" für eure Implementierung deklariert habt, sollte sie als externer Akteur (außerhalb eurer gezeichneten Systemgrenze) im Kontextdiagramm auftauchen, um die Gesamtheit des Systems darzustellen.
+
+Diskussion von Architekturalternativen: In der Bewertungsmatrix wird gefordert: "Include here the discussion on potential architecture alternatives and the rational why your team has agreed on this specific architecture.". Prüft, ob ihr in Kapitel 3.3 oder 6.2 wirklich eine Alternative genannt habt (z. B. "Warum läuft E-Stop nicht zentral als Software-Thread auf dem Jetson Nano?") und diese begründet verworfen habt. Eine reine Rechtfertigung der finalen Lösung reicht hier oft nicht für die volle Punktzahl.
+
+Vollständigkeit des internen Sequenzdiagramms: Für die 25 Punkte des "Detailed Design" wird ein Sequenzdiagramm gefordert, das externe Aufrufe, externe Abhängigkeiten und den Aufruf interner (privater) Methoden zeigt. Kontrolliert bei eurem Diagramm "5.2 Interner Ablauf", ob wirklich Aufrufe von außen, "Self-Calls" (private Methoden) und Aufrufe an externe Module wie IDriveControl detailliert im selben Ablauf dargestellt sind.
+
+UML-Notizen im Zustandsdiagramm: Ein kleines, aber wichtiges Detail aus der Aufgabenstellung besagt: "Use the note/comment feature of the model elements to specify additional information required for implementation.". Stellt sicher, dass an eurem State-Machine-Diagramm in Kapitel 5.3 gelbe UML-Notizboxen (Comments) hängen, die konkrete Implementierungsdetails (z.B. Erklärungen zu Guard-Bedingungen) liefern.
+
+3. Allgemeine Verbesserungsvorschläge (Best Practices)
+Detailgrad der Interfaces: Der Dozent legte im Unterricht Wert auf konkret ausgearbeitete Interfaces ("Interfaces gerne ausgearbeitet, nicht nur leere Boxen"). Prüft in euren Detaildiagrammen, ob alle Methoden in Interfaces (wie z.B. bei der DriveControlUnit) explizite Datentypen für Parameter und Rückgabewerte besitzen.
+
+Fehlerbehandlung (Keine Sensordaten): Laut Mitschrieb lautet eine explizite Regel: "Keine Sensordaten -> Stopp + Logging". Überprüft euer Sequenzdiagramm "4.5 Boundary Condition: Fehlerbehandlung", ob genau dieser spezifische Auslöser (z.B. Timeout des CAN-Busses oder Verbindungsabbruch) den Error-State herbeiführt und im Log gespeichert wird.
+
+Physische Freigabe erzwingen: Der Emergency Stop blockiert das System, "bis der Taster wieder freigibt". Stellt sicher, dass die "Guard-Condition" für den Zustandsübergang von E-Stop zurück zu Normal Operation klar und mathematisch/logisch formuliert ist und das physische "Release"-Event (EmergencyReleased) des Tasters beinhaltet.
+
+Fazit: Eure Struktur ist exzellent und das Dokument wirkt sehr professionell. Wenn ihr insbesondere die Alternativen-Diskussion, das Vorhandensein der UML-Notes im State-Diagramm und die externen Akteure im Kontextdiagramm noch einmal gegenprüft, habt ihr ein äußerst solides und vollumfängliches System Design Document!
